@@ -20,10 +20,10 @@ namespace server_movie
 
             // Console.WriteLine(query);
 
-            user.Login = "Badr";
+            user.Login  = "Patrick";
             user.Password = "azerty123";
-            user.Name = "Taner";
-            user.Surname = "Tava";
+            user.Name = "Pierre";
+            user.Surname = "Leblanc";
 
             // Add from context user in UserSet collection
             context.UserSet.Add(user);
