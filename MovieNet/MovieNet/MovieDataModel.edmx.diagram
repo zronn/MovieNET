@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="534b36397b6541efa1e0d9f28950b7cf" Name="Diagram1" >
+        <EntityTypeShape EntityType="MovieDataModel.User" Width="1.5" PointX="8" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MovieDataModel.Movie" Width="1.5" PointX="5.875" PointY="3.125" />
+        <EntityTypeShape EntityType="MovieDataModel.Note" Width="1.5" PointX="3.5" PointY="2.125" />
+        <EntityTypeShape EntityType="MovieDataModel.Type" Width="1.5" PointX="5.875" PointY="1" />
+        <EntityTypeShape EntityType="MovieDataModel.Comment" Width="1.5" PointX="3.5" PointY="4.125" />
+        <AssociationConnector Association="MovieDataModel.UserMovie" />
+        <AssociationConnector Association="MovieDataModel.MovieNote" />
+        <AssociationConnector Association="MovieDataModel.MovieComment" />
+        <AssociationConnector Association="MovieDataModel.TypeMovie" />
+        <AssociationConnector Association="MovieDataModel.UserNote" />
+        <AssociationConnector Association="MovieDataModel.UserComment" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
