@@ -12,18 +12,31 @@ namespace MovieNet
     {
         public MainViewModel()
         {
-            Name = "";
-            MyCommand = new RelayCommand(MyCommandExecute, MyCommandeCanExecute);
+            ConnectStatusName = "";
+            ConnectStatusColor = "Black";
+
+            Signin = new RelayCommand(SigninExecute, SigninCanExecute);
         }
 
-        private string _name;
+        private string _connectStatusName;
 
-        public string Name
+        public string ConnectStatusName
         {
-            get { return _name; }
+            get { return _connectStatusName; }
             set
             {
-                _name = value;
+                _connectStatusName = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private string _connectStatusColor;
+
+        public string ConnectStatusColor
+        {
+            get { return _connectStatusColor; }
+            set {
+                _connectStatusColor = value;
                 RaisePropertyChanged();
             }
         }
@@ -44,10 +57,9 @@ namespace MovieNet
             set { _password = value; }
         }
 
+        public RelayCommand Signin { get; }
 
-        public RelayCommand MyCommand { get; }
-
-        void MyCommandExecute()
+        void SigninExecute()
         {
             MovieDataModelContainer ctx = new MovieDataModelContainer();
 
@@ -55,14 +67,16 @@ namespace MovieNet
 
             if (query.Any())
             {
-                Name = "OK";
+                ConnectStatusName = "Connexion réussie !";
+                ConnectStatusColor = "Green";
             } else
             {
-                Name = "Erreur d'identifiants";
+                ConnectStatusName = "Erreur d'identifiants";
+                ConnectStatusColor = "Red";
             }
         }
 
-        bool MyCommandeCanExecute()
+        bool SigninCanExecute()
         {
             return true;
         }

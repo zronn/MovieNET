@@ -8,13 +8,21 @@
         DataContext="{Binding Source={StaticResource VMLocator}, Path=MainVM}"
         Title="Movie .NET" Height="350" Width="525">
     <Grid>
-        <Label x:Name="Label" Content="{Binding Name}" HorizontalAlignment="Left" Height="28" Margin="259,86,0,0" VerticalAlignment="Top" Width="141"/>
-        <Button x:Name="button1" Command="{Binding MyCommand}" Content="Connexion" HorizontalAlignment="Left" Margin="304,224,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="Login" Text="{Binding Login}" HorizontalAlignment="Left" Height="23" Margin="259,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Password" Text="{Binding Password}" HorizontalAlignment="Left" Height="23" Margin="259,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Login" HorizontalAlignment="Left" Margin="128,130,0,0" VerticalAlignment="Top"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="128,181,0,0" VerticalAlignment="Top"/>
-        <Label Content="Movie .NET" HorizontalAlignment="Left" Margin="196,27,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Label x:Name="status" Content="{Binding ConnectStatusName}" Foreground="{Binding ConnectStatusColor}" HorizontalAlignment="Left" Height="28" Margin="259,104,0,0" VerticalAlignment="Top" Width="141"/>
+        <Button x:Name="button1" Command="{Binding Signin}" Content="Connexion" HorizontalAlignment="Left" Margin="304,211,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="Login" Text="{Binding Login}" HorizontalAlignment="Left" Height="23" Margin="259,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Password" Text="{Binding Password}" HorizontalAlignment="Left" Height="23" Margin="259,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Login" HorizontalAlignment="Left" Margin="128,134,0,0" VerticalAlignment="Top"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="128,170,0,0" VerticalAlignment="Top"/>
+        <Label Content="Movie .NET" HorizontalAlignment="Left" Margin="166,23,0,0" VerticalAlignment="Top" FontSize="36"/>
+
+        <Label Content="Pas encore inscrit ?" HorizontalAlignment="Left" Margin="128,263,0,0" VerticalAlignment="Top"/>
+        <Button Content="Inscription" HorizontalAlignment="Left" Margin="304,263,0,0" VerticalAlignment="Top" Width="75"/>
+
+        <!-- Test POP UP-->
+        <Popup x:Name="FieldsPopup" Placement="Center" Width="400" Height="250" IsOpen="{Binding IsOpen}">
+            <TextBlock Background="LightBlue" HorizontalAlignment="Center" VerticalAlignment="Center" Height="250" Width="350" TextAlignment="Center" Margin="-161,-127,211,127" ><Run Text="This is a popup"/></TextBlock>
+        </Popup>
 
     </Grid>
 </Window>
