@@ -12,7 +12,7 @@ namespace MovieNet
     {
         public MainViewModel()
         {
-            Name = "Veuillez vous connecter";
+            Name = "";
             MyCommand = new RelayCommand(MyCommandExecute, MyCommandeCanExecute);
         }
 
@@ -58,7 +58,7 @@ namespace MovieNet
                 Name = "OK";
             } else
             {
-                Name = "Pas ok";
+                Name = "Erreur d'identifiants";
             }
         }
 
