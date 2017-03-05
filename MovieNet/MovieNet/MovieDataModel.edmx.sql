@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/05/2017 00:55:05
--- Generated from EDMX file: C:\Users\Zouzma\Source\Repos\MovieNET\MovieNet\MovieNet\MovieDataModel.edmx
+-- Date Created: 03/05/2017 02:09:58
+-- Generated from EDMX file: C:\Users\Badredine\Source\Repos\MovieNET\MovieNet\MovieNet\MovieDataModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,11 +17,44 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_UserMovie]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MovieSet] DROP CONSTRAINT [FK_UserMovie];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MovieNote]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[NoteSet] DROP CONSTRAINT [FK_MovieNote];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MovieComment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CommentSet] DROP CONSTRAINT [FK_MovieComment];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TypeMovie]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MovieSet] DROP CONSTRAINT [FK_TypeMovie];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserNote]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[NoteSet] DROP CONSTRAINT [FK_UserNote];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserComment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CommentSet] DROP CONSTRAINT [FK_UserComment];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[UserSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserSet];
+GO
+IF OBJECT_ID(N'[dbo].[MovieSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MovieSet];
+GO
+IF OBJECT_ID(N'[dbo].[NoteSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[NoteSet];
+GO
+IF OBJECT_ID(N'[dbo].[TypeSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TypeSet];
+GO
+IF OBJECT_ID(N'[dbo].[CommentSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CommentSet];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
