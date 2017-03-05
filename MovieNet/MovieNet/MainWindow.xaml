@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MovieNet"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="500" Width="750">
     <Grid>
-        
+        <Label Content="Inscription"  Height="35" Width="114"/>
+        <Label Content="MovieNET"  Height="49" Width="114" Margin="136,42,494,380.429"/>
+        <Label Content="Connection"  Height="49" Width="117" Margin="547,80,80,342.429"/>
+      
     </Grid>
 </Window>
