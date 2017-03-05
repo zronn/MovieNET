@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:MovieNet"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <local:VMLocator x:Key="VMLocator"/>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
