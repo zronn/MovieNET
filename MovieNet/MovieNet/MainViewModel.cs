@@ -49,8 +49,17 @@ namespace MovieNet
 
         void MyCommandExecute()
         {
+            MovieDataModelContainer ctx = new MovieDataModelContainer();
 
-            Name = "Hello click!";
+            var query = ctx.UserSet.Where(u => u.Login.Equals(Login) && u.Password.Equals(Password));
+
+            if (query.Any())
+            {
+                Name = "OK";
+            } else
+            {
+                Name = "Pas ok";
+            }
         }
 
         bool MyCommandeCanExecute()
