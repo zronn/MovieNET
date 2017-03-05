@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MovieNet"
         mc:Ignorable="d"
+        DataContext="{Binding Source={StaticResource VMLocator}, Path=MainVM}"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Label x:Name="Label" Content="{Binding Name}" HorizontalAlignment="Left" Height="28" Margin="172,37,0,0" VerticalAlignment="Top" Width="187"/>
+        <Button x:Name="button1" Command="{Binding MyCommand}" Content="Click here!" HorizontalAlignment="Left" Margin="322,187,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="277,83,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="277,134,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Login" HorizontalAlignment="Left" Margin="172,79,0,0" VerticalAlignment="Top"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="172,130,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>
