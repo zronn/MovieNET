@@ -74,6 +74,7 @@ namespace MovieNet.ViewModels
 
                 ApplicationWindow applicationWindow = new ApplicationWindow();
                 applicationWindow.Show();
+                
             }
             else
             {

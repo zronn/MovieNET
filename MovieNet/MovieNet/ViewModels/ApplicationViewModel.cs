@@ -13,15 +13,22 @@ namespace MovieNet.ViewModels
     {
         public ApplicationViewModel()
         {
-            List<Movie> movies = new List<Movie>();
             Label = "Bemete";
 
             MovieDataModelContainer ctx = new MovieDataModelContainer();
+            Movies = ctx.MovieSet.ToList();
 
-            Movie movie = new Movie();
-
-            movies = ctx.MovieSet.ToList();
+            var test = 2;
         }
+
+        private List<Movie> _movies;
+
+        public List<Movie> Movies
+        {
+            get { return _movies; }
+            set { _movies = value; }
+        }
+
 
         private string _label;
 

@@ -1,12 +1,12 @@
-﻿<Window x:Class="MovieNet.MainWindow"
+﻿<Window x:Class="MovieNet.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MovieNet"
+        xmlns:local="clr-namespace:MovieNet.Views"
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource VMLocator}, Path=MainVM}"
-        Title="Movie .NET" Height="350" Width="525">
+        Title="Movie .NET" Height="350" Width="530">
     <Grid>
         <Label x:Name="status" Content="{Binding ConnectStatusName}" Foreground="{Binding ConnectStatusColor}" HorizontalAlignment="Left" Height="28" Margin="259,104,0,0" VerticalAlignment="Top" Width="141"/>
         <Button x:Name="button1" Command="{Binding Signin}" Content="Connexion" HorizontalAlignment="Left" Margin="304,211,0,0" VerticalAlignment="Top" Width="75"/>
@@ -23,6 +23,5 @@
         <Popup x:Name="FieldsPopup" Placement="Center" Width="400" Height="250" IsOpen="{Binding IsOpen}">
             <TextBlock Background="LightBlue" HorizontalAlignment="Center" VerticalAlignment="Center" Height="250" Width="350" TextAlignment="Center" Margin="-161,-127,211,127" ><Run Text="This is a popup"/></TextBlock>
         </Popup>
-
     </Grid>
 </Window>
