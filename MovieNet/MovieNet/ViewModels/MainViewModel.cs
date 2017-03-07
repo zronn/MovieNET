@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
-namespace MovieNet
+namespace MovieNet.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
@@ -35,7 +35,8 @@ namespace MovieNet
         public string ConnectStatusColor
         {
             get { return _connectStatusColor; }
-            set {
+            set
+            {
                 _connectStatusColor = value;
                 RaisePropertyChanged();
             }
@@ -69,7 +70,8 @@ namespace MovieNet
             {
                 ConnectStatusName = "Connexion réussie !";
                 ConnectStatusColor = "Green";
-            } else
+            }
+            else
             {
                 ConnectStatusName = "Erreur d'identifiants";
                 ConnectStatusColor = "Red";

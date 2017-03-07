@@ -24,10 +24,5 @@ namespace MovieNet
         {
             InitializeComponent();
         }
-
-        private void Login_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
 }
