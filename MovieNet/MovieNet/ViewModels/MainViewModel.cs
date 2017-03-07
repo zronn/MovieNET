@@ -156,6 +156,9 @@ namespace MovieNet.ViewModels
 
                 ConnectStatusColor = "Green";
                 ConnectStatusName = LoginUp + ", votre inscription a bien été prise en compte!";
+
+                // TODO Vider les valeur du champs sinon elles sont populate!
+
                 SwitchView = 0;
             }
         }
