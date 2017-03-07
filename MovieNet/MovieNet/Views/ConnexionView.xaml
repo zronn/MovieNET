@@ -9,7 +9,7 @@
     <Grid>
         <Label Content="Movie .NET" HorizontalAlignment="Left" Margin="166,23,0,0" VerticalAlignment="Top" FontSize="36"/>
         
-        <Label x:Name="status" Content="{Binding ConnectStatusName}" Foreground="{Binding ConnectStatusColor}" HorizontalAlignment="Left" Height="28" Margin="259,104,0,0" VerticalAlignment="Top" Width="141"/>
+        <Label x:Name="ConnexionStatus" Content="{Binding ConnectStatusName}" Foreground="{Binding ConnectStatusColor}" HorizontalAlignment="Left" Height="28" Margin="128,101,0,0" VerticalAlignment="Top" Width="360"/>
 
         <Label Content="Login" HorizontalAlignment="Left" Margin="128,134,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="LoginIn" Text="{Binding LoginIn}" HorizontalAlignment="Left" Height="23" Margin="259,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>

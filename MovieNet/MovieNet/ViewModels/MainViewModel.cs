@@ -139,10 +139,12 @@ namespace MovieNet.ViewModels
 
             if (query.Any())
             {
+                // Le nom d'utilisateur choisi existe déjà, l'inscription n'est pas prise en compte
                 InscriptionStatusName = "Ce nom d'utilisateur existe déjà!";
             }
             else
             {
+                // Ajout du nouvel utilisateur
                 User user = new User();
 
                 user.Login = LoginUp;

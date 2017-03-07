@@ -7,8 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="350" d:DesignWidth="530">
     <Grid>
-        <Label Content="Inscription" HorizontalAlignment="Left" Margin="211,35,0,0" VerticalAlignment="Top" FontSize="22"/>
-        
+        <Label x:Name="InscriptionStatus" Content="Inscription" HorizontalAlignment="Left" Margin="211,35,0,0" VerticalAlignment="Top" FontSize="22"/>
+
+        <Label Content="{Binding InscriptionStatusName}" Foreground="Red" HorizontalAlignment="Left" Margin="98,91,0,0" VerticalAlignment="Top" Width="200"/>
         <Label Content="Nom d'utilisateur" HorizontalAlignment="Left" Margin="98,115,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="LoginUp" Text="{Binding LoginUp}" HorizontalAlignment="Left" Height="23" Margin="310,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Mot de passe" HorizontalAlignment="Left" Margin="98,162,0,0" VerticalAlignment="Top"/>
