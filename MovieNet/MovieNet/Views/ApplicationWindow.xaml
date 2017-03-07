@@ -31,5 +31,9 @@
                                     Header="Comment" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
+        
+        <Button Content="Films" HorizontalAlignment="Left" Margin="36,83,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Ajouter" HorizontalAlignment="Left" Margin="36,124,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Profil" HorizontalAlignment="Left" Margin="36,164,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>
