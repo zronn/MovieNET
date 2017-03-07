@@ -4,24 +4,35 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MovieNet.Views"
+        xmlns:viewmodels="clr-namespace:MovieNet.ViewModels"
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource VMLocator}, Path=MainVM}"
         Title="Movie .NET" Height="350" Width="530">
+
+    <Window.Resources>
+        <DataTemplate x:Key="ConnexionViewTemplate" DataType="{x:Type viewmodels:MainViewModel}">
+            <local:ConnexionView />
+        </DataTemplate>
+
+        <DataTemplate x:Key="InscriptionViewTemplate" DataType="{x:Type viewmodels:MainViewModel}">
+            <local:InscriptionView />
+        </DataTemplate>
+    </Window.Resources>
+    
     <Grid>
-        <Label x:Name="status" Content="{Binding ConnectStatusName}" Foreground="{Binding ConnectStatusColor}" HorizontalAlignment="Left" Height="28" Margin="259,104,0,0" VerticalAlignment="Top" Width="141"/>
-        <Button x:Name="button1" Command="{Binding Signin}" Content="Connexion" HorizontalAlignment="Left" Margin="304,211,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox x:Name="Login" Text="{Binding Login}" HorizontalAlignment="Left" Height="23" Margin="259,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Password" Text="{Binding Password}" HorizontalAlignment="Left" Height="23" Margin="259,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Login" HorizontalAlignment="Left" Margin="128,134,0,0" VerticalAlignment="Top"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="128,170,0,0" VerticalAlignment="Top"/>
-        <Label Content="Movie .NET" HorizontalAlignment="Left" Margin="166,23,0,0" VerticalAlignment="Top" FontSize="36"/>
 
-        <Label Content="Pas encore inscrit ?" HorizontalAlignment="Left" Margin="128,263,0,0" VerticalAlignment="Top"/>
-        <Button Content="Inscription" HorizontalAlignment="Left" Margin="304,263,0,0" VerticalAlignment="Top" Width="75"/>
+        <ContentControl Content="{Binding }">
+            <ContentControl.Style>
+                <Style TargetType="{x:Type ContentControl}">
+                    <Setter Property="ContentTemplate" Value="{StaticResource ConnexionViewTemplate}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SwitchView}" Value="1">
+                            <Setter Property="ContentTemplate" Value="{StaticResource InscriptionViewTemplate}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
 
-        <!-- Test POP UP-->
-        <Popup x:Name="FieldsPopup" Placement="Center" Width="400" Height="250" IsOpen="{Binding IsOpen}">
-            <TextBlock Background="LightBlue" HorizontalAlignment="Center" VerticalAlignment="Center" Height="250" Width="350" TextAlignment="Center" Margin="-161,-127,211,127" ><Run Text="This is a popup"/></TextBlock>
-        </Popup>
     </Grid>
 </Window>

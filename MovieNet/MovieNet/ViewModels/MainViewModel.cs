@@ -13,14 +13,38 @@ namespace MovieNet.ViewModels
     {
         public MainViewModel()
         {
+            SwitchView = 0;
+
             ConnectStatusName = "";
             ConnectStatusColor = "Black";
 
+            InscriptionStatusName = "";
+
             Signin = new RelayCommand(SigninExecute, SigninCanExecute);
+            Signup = new RelayCommand(SignupExecute, SignupCanExecute);
+
+            ToSignin = new RelayCommand(ToSigninExecute, ToSigninCanExecute);
+            ToSignup = new RelayCommand(ToSignupExecute, ToSignupCanExecute);
         }
 
+        private int _switchView;
         private string _connectStatusName;
+        private string _connectStatusColor;
+        private string _loginIn;
+        private string _passwordIn;
+        private string _loginUp;
+        private string _passwordUp;
+        private string _inscriptionStatusName;
 
+        public int SwitchView
+        {
+            get { return _switchView; }
+            set
+            {
+                _switchView = value;
+                RaisePropertyChanged();
+            }
+        }
         public string ConnectStatusName
         {
             get { return _connectStatusName; }
@@ -30,9 +54,6 @@ namespace MovieNet.ViewModels
                 RaisePropertyChanged();
             }
         }
-
-        private string _connectStatusColor;
-
         public string ConnectStatusColor
         {
             get { return _connectStatusColor; }
@@ -42,30 +63,45 @@ namespace MovieNet.ViewModels
                 RaisePropertyChanged();
             }
         }
-
-        private string _login;
-
-        public string Login
+        public string LoginIn
         {
-            get { return _login; }
-            set { _login = value; }
+            get { return _loginIn; }
+            set { _loginIn = value; }
         }
-
-        private string _password;
-
-        public string Password
+        public string PasswordIn
         {
-            get { return _password; }
-            set { _password = value; }
+            get { return _passwordIn; }
+            set { _passwordIn = value; }
         }
-
+        public string LoginUp
+        {
+            get { return _loginIn; }
+            set { _loginIn = value; }
+        }
+        public string PasswordUp
+        {
+            get { return _passwordUp; }
+            set { _passwordUp = value; }
+        }
+        public string InscriptionStatusName
+        {
+            get { return _inscriptionStatusName; }
+            set
+            {
+                _inscriptionStatusName = value;
+                RaisePropertyChanged();
+            }
+        }
         public RelayCommand Signin { get; }
+        public RelayCommand Signup { get; }
+        public RelayCommand ToSignin { get; }
+        public RelayCommand ToSignup { get; }
 
         void SigninExecute()
         {
             MovieDataModelContainer ctx = new MovieDataModelContainer();
 
-            var query = ctx.UserSet.Where(u => u.Login.Equals(Login) && u.Password.Equals(Password));
+            var query = ctx.UserSet.Where(u => u.Login.Equals(LoginIn) && u.Password.Equals(PasswordIn));
 
             if (query.Any())
             {
@@ -82,8 +118,54 @@ namespace MovieNet.ViewModels
                 ConnectStatusColor = "Red";
             }
         }
-
         bool SigninCanExecute()
+        {
+            return true;
+        }
+        void ToSigninExecute()
+        {
+            SwitchView = 0;
+        }
+        bool ToSigninCanExecute()
+        {
+            return true;
+        }
+
+        void SignupExecute()
+        {
+            MovieDataModelContainer ctx = new MovieDataModelContainer();
+
+            var query = ctx.UserSet.Where(u => u.Login.Equals(LoginUp));
+
+            if (query.Any())
+            {
+                InscriptionStatusName = "Ce nom d'utilisateur existe déjà!";
+            }
+            else
+            {
+                User user = new User();
+
+                user.Login = LoginUp;
+                user.Password = PasswordUp;
+
+                ctx.UserSet.Add(user);
+
+                ctx.SaveChanges();
+
+                ConnectStatusColor = "Green";
+                ConnectStatusName = LoginUp + ", votre inscription a bien été prise en compte!";
+                SwitchView = 0;
+            }
+        }
+        bool SignupCanExecute()
+        {
+            return true;
+        }
+        void ToSignupExecute()
+        {
+            SwitchView = 1;
+        }
+        bool ToSignupCanExecute()
         {
             return true;
         }

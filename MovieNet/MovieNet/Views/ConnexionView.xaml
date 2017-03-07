@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="MovieNet.Views.ConnexionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MovieNet.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="530">
+    <Grid>
+        <Label Content="Movie .NET" HorizontalAlignment="Left" Margin="166,23,0,0" VerticalAlignment="Top" FontSize="36"/>
+        
+        <Label x:Name="status" Content="{Binding ConnectStatusName}" Foreground="{Binding ConnectStatusColor}" HorizontalAlignment="Left" Height="28" Margin="259,104,0,0" VerticalAlignment="Top" Width="141"/>
+
+        <Label Content="Login" HorizontalAlignment="Left" Margin="128,134,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="LoginIn" Text="{Binding LoginIn}" HorizontalAlignment="Left" Height="23" Margin="259,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="128,170,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="PasswordIn" Text="{Binding PasswordIn}" HorizontalAlignment="Left" Height="23" Margin="259,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="Signin" Command="{Binding Signin}" Content="Connexion" HorizontalAlignment="Left" Margin="304,211,0,0" VerticalAlignment="Top" Width="75"/>
+
+        <Label Content="Pas encore inscrit ?" HorizontalAlignment="Left" Margin="128,263,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="buttonToSignup" Content="Inscription" Command="{Binding ToSignup}" HorizontalAlignment="Left" Margin="304,263,0,0" VerticalAlignment="Top" Width="75"/>
+    </Grid>
+</UserControl>
