@@ -15,7 +15,7 @@ namespace MovieNet.ViewModels
         {
             ToFilm = new RelayCommand(ToFilmExecute, ToFilmCanExecute);
             ToProfil = new RelayCommand(ToProfilExecute, ToProfilCanExecute);
-
+            
             SwitchView = 0;
             Label = "Bemete";
 
