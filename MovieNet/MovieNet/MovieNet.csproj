@@ -122,6 +122,12 @@
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\View1.xaml.cs">
+      <DependentUpon>View1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\View2.xaml.cs">
+      <DependentUpon>View2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VMApplication.cs" />
     <Compile Include="VMLocator.cs" />
     <Page Include="Views\ApplicationWindow.xaml">
@@ -133,6 +139,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\View1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\View2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

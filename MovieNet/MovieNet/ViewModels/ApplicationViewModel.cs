@@ -13,13 +13,28 @@ namespace MovieNet.ViewModels
     {
         public ApplicationViewModel()
         {
+            ToFilm = new RelayCommand(ToFilmExecute, ToFilmCanExecute);
+            ToProfil = new RelayCommand(ToProfilExecute, ToProfilCanExecute);
+
+            SwitchView = 0;
             Label = "Bemete";
 
             MovieDataModelContainer ctx = new MovieDataModelContainer();
             Movies = ctx.MovieSet.ToList();
-
-            var test = 2;
+   
         }
+
+        private int _switchView;
+
+        public int SwitchView
+        {
+            get { return _switchView; }
+            set {
+                _switchView = value;
+                RaisePropertyChanged();
+            }
+        }
+
 
         private List<Movie> _movies;
 
@@ -38,5 +53,28 @@ namespace MovieNet.ViewModels
             set { _label = value; }
         }
 
+        public RelayCommand ToFilm { get; }
+        public RelayCommand ToProfil { get; }
+
+
+        void ToFilmExecute()
+        {
+            SwitchView = 0;
+        }
+
+        void ToProfilExecute()
+        {
+            SwitchView = 1;
+        }
+
+        bool ToFilmCanExecute()
+        {
+            return true;
+        }
+
+        bool ToProfilCanExecute()
+        {
+            return true;
+        }
     }
 }

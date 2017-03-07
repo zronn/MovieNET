@@ -4,36 +4,39 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MovieNet.Views"
+        xmlns:viewmodels="clr-namespace:MovieNet.ViewModels"
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource VMApplication}, Path=ApplicationVM}"
         Title="Movie .NET" Height="400" Width="600">
-    <Grid>
-        <Label Content="{Binding Label}" HorizontalAlignment="Left" Margin="294,24,0,0" VerticalAlignment="Top"/>
 
-        <DataGrid x:Name="ListMovie" ItemsSource="{Binding Movies}"
-                  SelectionMode="Single" SelectionUnit="FullRow"
-                  HorizontalAlignment="Left" Height="260" Margin="153,80,0,0" VerticalAlignment="Top"
-                  AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" Width="414">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="IdColumn" Binding="{Binding Id}" 
-                                    Header="Id" Width="Auto"/>
-                <DataGridTextColumn x:Name="TitleColumn" Binding="{Binding Title}" 
-                                    Header="Title" Width="Auto"/>
-                <DataGridTextColumn x:Name="typeColumn" Binding="{Binding Type.Id}" 
-                                    Header="Type" Width="Auto"/>
-                <DataGridTextColumn x:Name="DescriptioneColumn" Binding="{Binding Description}" 
-                                    Header="Description" Width="Auto"/>
-                <DataGridTextColumn x:Name="UserColumn" Binding="{Binding User.Id}" 
-                                    Header="User" Width="Auto"/>
-                <DataGridTextColumn x:Name="NoteColumn" Binding="{Binding Note}"
-                                    Header="Note" Width="Auto"/>
-                <DataGridTextColumn x:Name="CommentColumn" Binding="{Binding Comment}" 
-                                    Header="Comment" Width="Auto"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        
-        <Button Content="Films" HorizontalAlignment="Left" Margin="36,83,0,0" VerticalAlignment="Top" Width="75"/>
+    <Window.Resources>
+        <DataTemplate x:Key="View1Template" DataType="{x:Type viewmodels:ApplicationViewModel}">
+            <local:View1 />
+        </DataTemplate>
+
+        <DataTemplate x:Key="View2Template" DataType="{x:Type viewmodels:ApplicationViewModel}">
+            <local:View2 />
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+
+        <Button x:Name="buttonToFilms" Content="Films" Command="{Binding ToFilm}" HorizontalAlignment="Left" Margin="36,83,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Ajouter" HorizontalAlignment="Left" Margin="36,124,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Profil" HorizontalAlignment="Left" Margin="36,164,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="buttonToProfil" Content="Profil" Command="{Binding ToProfil}" HorizontalAlignment="Left" Margin="36,164,0,0" VerticalAlignment="Top" Width="75"/>
+
+        <ContentControl Content="{Binding }">
+            <ContentControl.Style>
+                <Style TargetType="{x:Type ContentControl}">
+                    <Setter Property="ContentTemplate" Value="{StaticResource View1Template}" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SwitchView}" Value="1">
+                            <Setter Property="ContentTemplate" Value="{StaticResource View2Template}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+        
     </Grid>
 </Window>
