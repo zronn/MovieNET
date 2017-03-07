@@ -97,7 +97,7 @@
     <Compile Include="Comment.cs">
       <DependentUpon>MovieDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Movie.cs">
       <DependentUpon>MovieDataModel.tt</DependentUpon>
@@ -116,7 +116,14 @@
     <Compile Include="User.cs">
       <DependentUpon>MovieDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\ApplicationWindow.xaml.cs">
+      <DependentUpon>ApplicationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VMLocator.cs" />
+    <Page Include="Views\ApplicationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

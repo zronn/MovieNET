@@ -8,9 +8,8 @@ using GalaSoft.MvvmLight.CommandWpf;
 
 namespace MovieNet.ViewModels
 {
-    public class LoginViewModel : MainViewModel
+    class ApplicationViewModel : ViewModelBase
     {
 
     }
-
 }
