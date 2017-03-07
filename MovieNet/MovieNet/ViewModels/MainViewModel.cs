@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using MovieNet.Views;
 
 namespace MovieNet.ViewModels
 {
@@ -70,6 +71,9 @@ namespace MovieNet.ViewModels
             {
                 ConnectStatusName = "Connexion réussie !";
                 ConnectStatusColor = "Green";
+
+                ApplicationWindow applicationWindow = new ApplicationWindow();
+                applicationWindow.Show();
             }
             else
             {

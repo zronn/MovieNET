@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MovieNet.Views"
         mc:Ignorable="d"
+        DataContext="{Binding Source={StaticResource VMApplication}, Path=ApplicationVM}"
         Title="Movie .NET" Height="400" Width="600">
     <Grid>
-        
+        <Label Content="{Binding Label}" HorizontalAlignment="Left" Margin="223,196,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>

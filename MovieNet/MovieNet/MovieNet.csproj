@@ -119,6 +119,7 @@
     <Compile Include="Views\ApplicationWindow.xaml.cs">
       <DependentUpon>ApplicationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VMApplication.cs" />
     <Compile Include="VMLocator.cs" />
     <Page Include="Views\ApplicationWindow.xaml">
       <SubType>Designer</SubType>
