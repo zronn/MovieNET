@@ -27,12 +27,11 @@
 
         <Button x:Name="buttonToDisconnect" Content="Déconnexion" Command="{Binding ToDisconnect}" HorizontalAlignment="Left" Margin="36,324,0,0" VerticalAlignment="Top" Width="75"/>
 
-        <ContentControl>
+        <ContentControl Content="{Binding }">
             <ContentControl.Style>
                 <Style TargetType="{x:Type ContentControl}">
                     <Setter Property="ContentTemplate" Value="{StaticResource ApplicationMovieView}" />
                     <Style.Triggers>
-
                         <DataTrigger Binding="{Binding SubSwitchView}" Value="2">
                             <Setter Property="ContentTemplate" Value="{StaticResource ApplicationProfilView}" />
                         </DataTrigger>

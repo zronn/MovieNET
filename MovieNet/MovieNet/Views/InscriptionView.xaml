@@ -10,11 +10,14 @@
         <Label x:Name="InscriptionStatus" Content="Inscription" HorizontalAlignment="Left" Margin="286,32,0,0" VerticalAlignment="Top" FontSize="24"/>
 
         <Label Content="{Binding InscriptionStatusName}" Foreground="Red" HorizontalAlignment="Left" Margin="167,89,0,0" VerticalAlignment="Top" Width="398"/>
+        
         <Label Content="Nom d'utilisateur" HorizontalAlignment="Left" Margin="167,115,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="LoginUp" Text="{Binding LoginUp}" HorizontalAlignment="Left" Height="23" Margin="445,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        
         <Label Content="Mot de passe" HorizontalAlignment="Left" Margin="167,162,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="PasswordUp" Text="{Binding PasswordUp}" HorizontalAlignment="Left" Height="23" Margin="445,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="buttonSignup" Command="{Binding Signup}" Content="Valider l'inscription" HorizontalAlignment="Left" Margin="445,240,0,0" VerticalAlignment="Top" Width="120"/>
+        
         <Button x:Name="buttonToLogin" Command="{Binding ToSignin}" Content="Retour" HorizontalAlignment="Left" Margin="167,300,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </UserControl>

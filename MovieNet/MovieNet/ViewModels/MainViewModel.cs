@@ -16,13 +16,13 @@ namespace MovieNet.ViewModels
             SwitchView = 0;
             SubSwitchView = 0;
 
+            StatusColor = "Black";
             ConnectStatusName = "";
-            ConnectStatusColor = "Black";
+            InscriptionStatusName = "";
+            ProfilEditStatusName = "";
 
             UserIdConnected = 0;
             UserNameConnected = "";
-
-            InscriptionStatusName = "";
 
             MovieDataModelContainer ctx = new MovieDataModelContainer();
             Movies = ctx.MovieSet.ToList();
@@ -36,14 +36,18 @@ namespace MovieNet.ViewModels
             ToProfil = new RelayCommand(ToProfilExecute, ToProfilCanExecute);
             ToMovie = new RelayCommand(ToMovieExecute, ToMovieCanExecute);
 
+            ProfilEdit = new RelayCommand(ProfilEditExecute, ProfilEditCanExecute);
+
             ToDisconnect = new RelayCommand(ToDisconnectExecute, ToDisconnectCanExecute);
         }
 
         private int _switchView;
         private int _subSwitchView;
+
+        private string _statusColor;
         private string _connectStatusName;
-        private string _connectStatusColor;
         private string _inscriptionStatusName;
+        private string _profilEditStatusName;
 
         private int _userIdConnected;
         private string _userNameConnected;
@@ -53,6 +57,10 @@ namespace MovieNet.ViewModels
 
         private string _loginUp;
         private string _passwordUp;
+
+        private string _loginEdit;
+        private string _passwordEdit;
+        private string _passwordEditConfirm;
 
         private List<Movie> _movies;
 
@@ -74,21 +82,22 @@ namespace MovieNet.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        public string StatusColor
+        {
+            get { return _statusColor; }
+            set
+            {
+                _statusColor = value;
+                RaisePropertyChanged();
+            }
+        }
         public string ConnectStatusName
         {
             get { return _connectStatusName; }
             set
             {
                 _connectStatusName = value;
-                RaisePropertyChanged();
-            }
-        }
-        public string ConnectStatusColor
-        {
-            get { return _connectStatusColor; }
-            set
-            {
-                _connectStatusColor = value;
                 RaisePropertyChanged();
             }
         }
@@ -101,6 +110,17 @@ namespace MovieNet.ViewModels
                 RaisePropertyChanged();
             }
         }
+        public string ProfilEditStatusName
+        {
+            get { return _profilEditStatusName; }
+            set
+            {
+                _profilEditStatusName = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
         public int UserIdConnected
         {
             get { return _userIdConnected; }
@@ -119,6 +139,7 @@ namespace MovieNet.ViewModels
                 RaisePropertyChanged();
             }
         }
+
         public string LoginIn
         {
             get { return _loginIn; }
@@ -129,6 +150,7 @@ namespace MovieNet.ViewModels
             get { return _passwordIn; }
             set { _passwordIn = value; }
         }
+
         public string LoginUp
         {
             get { return _loginUp; }
@@ -139,6 +161,23 @@ namespace MovieNet.ViewModels
             get { return _passwordUp; }
             set { _passwordUp = value; }
         }
+
+        public string LoginEdit
+        {
+            get { return _loginEdit; }
+            set { _loginEdit = value; }
+        }
+        public string PasswordEdit
+        {
+            get { return _passwordEdit; }
+            set { _passwordEdit = value; }
+        }
+        public string PasswordEditConfirm
+        {
+            get { return _passwordEditConfirm; }
+            set { _passwordEditConfirm = value; }
+        }
+
         public List<Movie> Movies
         {
             get { return _movies; }
@@ -152,6 +191,7 @@ namespace MovieNet.ViewModels
         public RelayCommand ToProfil { get; }
         public RelayCommand ToMovie { get; }
         public RelayCommand ToDisconnect { get; }
+        public RelayCommand ProfilEdit { get; }
 
         /*
          * Méthode pour la connexion
@@ -172,7 +212,7 @@ namespace MovieNet.ViewModels
             else
             {
                 ConnectStatusName = "Erreur d'identifiants";
-                ConnectStatusColor = "Red";
+                StatusColor = "Red";
             }
         }
         bool SigninCanExecute()
@@ -218,7 +258,7 @@ namespace MovieNet.ViewModels
 
                 ctx.SaveChanges();
 
-                ConnectStatusColor = "Green";
+                StatusColor = "Green";
                 ConnectStatusName = LoginUp + ", votre inscription a bien été prise en compte!";
 
                 // TODO Vider les valeur du champs sinon elles sont populate!
@@ -267,6 +307,77 @@ namespace MovieNet.ViewModels
             return true;
         }
 
+        void ProfilEditExecute()
+        {
+            // Si uniquement le login
+            if (String.IsNullOrEmpty(LoginEdit))
+            {
+                StatusColor = "Red";
+                ProfilEditStatusName = "Veuillez ajouter un nom d'utilisateur";
+            }
+            else if (!String.IsNullOrEmpty(LoginEdit) && !String.IsNullOrEmpty(PasswordEdit) && !String.IsNullOrEmpty(PasswordEditConfirm))
+            {
+                if (PasswordEdit != PasswordEditConfirm)
+                {
+                    StatusColor = "Red";
+                    ProfilEditStatusName = "Les deux mots de passe ne correspondent pas";
+                }
+                else
+                {
+                    // Si le login est différent de l'utilisateur connecté, on le modifie
+                    if (LoginEdit != UserNameConnected)
+                    {
+                        MovieDataModelContainer ctx = new MovieDataModelContainer();
+
+                        var user = ctx.UserSet.Single(x => x.Id == UserIdConnected);
+                        user.Login = LoginEdit;
+                        user.Password = PasswordEdit;
+                        ctx.SaveChanges();
+
+                        UserNameConnected = LoginEdit;
+                        StatusColor = "Green";
+                        ProfilEditStatusName = "Le nom d'utilisateur et le password ont bien été modifiés!";
+                    }
+                    // Sinon, on modifie uniquement le mot de passe
+                    else
+                    {
+                        MovieDataModelContainer ctx = new MovieDataModelContainer();
+
+                        var user = ctx.UserSet.Single(x => x.Id == UserIdConnected);
+                        user.Password = PasswordEdit;
+                        ctx.SaveChanges();
+
+                        StatusColor = "Green";
+                        ProfilEditStatusName = "Le password a bien été modifié!";
+                    }
+                }
+                // Modification du nom et du mot de passe, si même pseudo que l'actuel on ne le change pas.
+            }
+            else if (!String.IsNullOrEmpty(LoginEdit))
+            {
+                if (LoginEdit == UserNameConnected)
+                {
+                    ProfilEditStatusName = "Ce login est déjà le votre actuellement";
+                }
+                else
+                {
+                    MovieDataModelContainer ctx = new MovieDataModelContainer();
+
+                    var user = ctx.UserSet.Single(x => x.Id == UserIdConnected);
+                    user.Login = LoginEdit;
+                    ctx.SaveChanges();
+
+                    UserNameConnected = LoginEdit;
+                    StatusColor = "Green";
+                    ProfilEditStatusName = "Le nom d'utilisateur a bien été modifié!";
+                }
+            }
+        }
+        bool ProfilEditCanExecute()
+        {
+            return true;
+        }
+
         /*
          * Méthode pour se déconnecter
          */
@@ -275,7 +386,7 @@ namespace MovieNet.ViewModels
             SwitchView = 0;
             SubSwitchView = 0;
             UserIdConnected = 0;
-            ConnectStatusColor = "Green";
+            StatusColor = "Green";
             ConnectStatusName = "Vous avez correctement été déconnecté!";
         }
         bool ToDisconnectCanExecute()
