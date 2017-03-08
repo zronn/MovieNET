@@ -286,22 +286,32 @@ namespace MovieNet.ViewModels
             }
             else
             {
-                // Ajout du nouvel utilisateur
-                User user = new User();
+                if (String.IsNullOrEmpty(LoginUp))
+                {
+                    InscriptionStatusName = "Veuillez renseigner un nom d'utilisateur";
+                }
+                else if (String.IsNullOrEmpty(PasswordUp))
+                {
+                    InscriptionStatusName = "Veuillez renseigner un mot de passe";
+                } else
+                {
+                    // Ajout du nouvel utilisateur
+                    User user = new User();
 
-                user.Login = LoginUp;
-                user.Password = PasswordUp;
+                    user.Login = LoginUp;
+                    user.Password = PasswordUp;
 
-                ctx.UserSet.Add(user);
+                    ctx.UserSet.Add(user);
 
-                ctx.SaveChanges();
+                    ctx.SaveChanges();
 
-                StatusColor = "Green";
-                ConnectStatusName = LoginUp + ", votre inscription a bien été prise en compte!";
+                    StatusColor = "Green";
+                    ConnectStatusName = LoginUp + ", votre inscription a bien été prise en compte!";
 
-                // TODO Vider les valeur du champs sinon elles sont populate!
+                    // TODO Vider les valeur du champs sinon elles sont populate!
 
-                SwitchView = 0;
+                    SwitchView = 0;
+                }
             }
         }
         bool SignupCanExecute()
