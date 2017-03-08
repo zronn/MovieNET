@@ -352,7 +352,6 @@ namespace MovieNet.ViewModels
                 AddMovieStatusName = "Veuillez Ajouter une description";
                 Valid = false;
             }
-
         }
         bool ToValidAddMovieCanExecute()
         {

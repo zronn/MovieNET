@@ -18,7 +18,7 @@
         <Label Content="Desciption" HorizontalAlignment="Left" Margin="167,191,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="Description" Text="{Binding DescriptionAdd}" HorizontalAlignment="Left" Height="44" Margin="300,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
 
-        <Button x:Name="ButtonValidAddMovie" Command="{Binding ToAddMovie}" Content="Ajouter" HorizontalAlignment="Left" Margin="445,330,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="ButtonValidAddMovie" Command="{Binding ToValidAddMovie}" Content="Ajouter" HorizontalAlignment="Left" Margin="445,330,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </UserControl>
