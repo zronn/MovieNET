@@ -13,6 +13,10 @@
             <local:ApplicationMovieView />
         </DataTemplate>
 
+        <DataTemplate x:Key="ApplicationAddMovieView" DataType="{x:Type viewmodels:MainViewModel}">
+            <local:ApplicationAddMovieView />
+        </DataTemplate>
+
         <DataTemplate x:Key="ApplicationProfilView" DataType="{x:Type viewmodels:MainViewModel}">
             <local:ApplicationProfilView />
         </DataTemplate>
@@ -21,7 +25,7 @@
     <Grid>
         
         <Button x:Name="buttonToFilms" Content="Films" Command="{Binding ToMovie}" HorizontalAlignment="Left" Margin="36,83,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Ajouter" HorizontalAlignment="Left" Margin="36,124,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="buttonToAddMovie" Content="Ajouter" Command="{Binding ToAddMovie}" HorizontalAlignment="Left" Margin="36,124,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="buttonToProfil" Content="Profil" Command="{Binding ToProfil}" HorizontalAlignment="Left" Margin="36,164,0,0" VerticalAlignment="Top" Width="75"/>
 
         <ContentControl Content="{Binding }">
@@ -29,10 +33,15 @@
                 <Style TargetType="{x:Type ContentControl}">
                     <Setter Property="ContentTemplate" Value="{StaticResource ApplicationMovieView}" />
                     <Style.Triggers>
-                        
+
+                        <DataTrigger Binding="{Binding SubSwitchView}" Value="1">
+                            <Setter Property="ContentTemplate" Value="{StaticResource ApplicationAddMovieView}" />
+                        </DataTrigger>
+
                         <DataTrigger Binding="{Binding SubSwitchView}" Value="2">
                             <Setter Property="ContentTemplate" Value="{StaticResource ApplicationProfilView}" />
                         </DataTrigger>
+
                     </Style.Triggers>
                 </Style>
             </ContentControl.Style>

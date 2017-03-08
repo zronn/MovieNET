@@ -19,7 +19,7 @@ namespace MovieNet.ViewModels
             ConnectStatusName = "";
             ConnectStatusColor = "Black";
 
-            UserConnected = "";
+            UserIdConnected = 0;
 
             InscriptionStatusName = "";
 
@@ -33,6 +33,10 @@ namespace MovieNet.ViewModels
             ToSignup = new RelayCommand(ToSignupExecute, ToSignupCanExecute);
 
             ToProfil = new RelayCommand(ToProfilExecute, ToProfilCanExecute);
+            ToAddMovie = new RelayCommand(ToAddMovieExecute, ToAddMovieCanExecute);
+
+            ToValidAddMovie = new RelayCommand(ToValidAddMovieExecute, ToValidAddMovieCanExecute);
+
             ToMovie = new RelayCommand(ToMovieExecute, ToMovieCanExecute);
         }
 
@@ -42,7 +46,7 @@ namespace MovieNet.ViewModels
         private string _connectStatusColor;
         private string _inscriptionStatusName;
 
-        private string _userConnected;
+        private int _userIdConnected;
 
         private string _loginIn;
         private string _passwordIn;
@@ -50,7 +54,13 @@ namespace MovieNet.ViewModels
         private string _loginUp;
         private string _passwordUp;
 
+        private string _titleAdd;
+        private string _descriptionAdd;
+
+        private string _addMovieStatusName;
+
         private List<Movie> _movies;
+        private List<Type> _types;
 
         public int SwitchView
         {
@@ -97,15 +107,44 @@ namespace MovieNet.ViewModels
                 RaisePropertyChanged();
             }
         }
-        public string UserConnected
+        public int UserIdConnected
         {
-            get { return _userConnected; }
+            get { return _userIdConnected; }
             set
             {
-                _userConnected = value;
+                _userIdConnected = value;
                 RaisePropertyChanged();
             }
         }
+
+
+        
+
+        public string AddMovieStatusName
+        {
+            get { return _addMovieStatusName; }
+            set
+            {
+                _addMovieStatusName = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
+        public string TitleAdd
+        {
+            get { return _titleAdd; }
+            set { _titleAdd = value; }
+        }
+
+        public string DescriptionAdd
+        {
+            get { return _descriptionAdd; }
+            set { _descriptionAdd = value; }
+        }
+
+
+
         public string LoginIn
         {
             get { return _loginIn; }
@@ -132,11 +171,20 @@ namespace MovieNet.ViewModels
             set { _movies = value; }
         }
 
+        public List<Type> Types
+        {
+            get { return _types; }
+            set { _types = value; }
+        }
+
+
         public RelayCommand Signin { get; }
         public RelayCommand Signup { get; }
         public RelayCommand ToSignin { get; }
         public RelayCommand ToSignup { get; }
         public RelayCommand ToProfil { get; }
+        public RelayCommand ToAddMovie { get; }
+        public RelayCommand ToValidAddMovie { get; }
         public RelayCommand ToMovie { get; }
 
         /*
@@ -146,18 +194,16 @@ namespace MovieNet.ViewModels
         {
             MovieDataModelContainer ctx = new MovieDataModelContainer();
 
-            var query = ctx.UserSet.Where(u => u.Login.Equals(LoginIn) && u.Password.Equals(PasswordIn));
+            var query = ctx.UserSet.Where(u => u.Login.Equals(LoginIn) && u.Password.Equals(PasswordIn)).ToList();
 
             if (query.Any())
             {
                 ConnectStatusName = "Connexion réussie !";
                 ConnectStatusColor = "Green";
 
+                UserIdConnected = query[0].Id;
+
                 SwitchView = 2;
-                
-                //ApplicationWindow applicationWindow = new ApplicationWindow();
-                //applicationWindow.Show();
-                
             }
             else
             {
@@ -234,6 +280,44 @@ namespace MovieNet.ViewModels
         }
 
         /*
+         * Méthode pour aller vers la sous-vue formulaire d'ajout de film
+         */
+        void ToAddMovieExecute()
+        {
+            SubSwitchView = 1;
+
+            /*MovieDataModelContainer ctx = new MovieDataModelContainer();
+            Types = ctx.TypeSet.ToList();*/
+        }
+        bool ToAddMovieCanExecute()
+        {
+            return true;
+        }
+
+        /*
+         * Méthode pour valider le formulaire de film
+         */
+        void ToValidAddMovieExecute()
+        {
+            var Valid = true;
+            if (String.IsNullOrEmpty(TitleAdd))
+            {
+                AddMovieStatusName = "Veuillez Ajouter un titre";
+                Valid = false;
+            }
+            if (String.IsNullOrEmpty(DescriptionAdd))
+            {
+                AddMovieStatusName = "Veuillez Ajouter une description";
+                Valid = false;
+            }
+
+        }
+        bool ToValidAddMovieCanExecute()
+        {
+            return true;
+        }
+
+        /*
          * Méthode pour aller vers la sous-vue de profil
          */
         void ToProfilExecute()
@@ -244,7 +328,7 @@ namespace MovieNet.ViewModels
         {
             return true;
         }
-        
+
         /*
          * Méthode pour aller vers la sous-vue des films
          */
