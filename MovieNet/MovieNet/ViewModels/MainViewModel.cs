@@ -23,6 +23,9 @@ namespace MovieNet.ViewModels
 
             InscriptionStatusName = "";
 
+            MovieDataModelContainer ctx = new MovieDataModelContainer();
+            Movies = ctx.MovieSet.ToList();
+
             Signin = new RelayCommand(SigninExecute, SigninCanExecute);
             Signup = new RelayCommand(SignupExecute, SignupCanExecute);
 
@@ -34,15 +37,20 @@ namespace MovieNet.ViewModels
         }
 
         private int _switchView;
+        private int _subSwitchView;
         private string _connectStatusName;
         private string _connectStatusColor;
+        private string _inscriptionStatusName;
+
         private string _userConnected;
+
         private string _loginIn;
         private string _passwordIn;
+
         private string _loginUp;
         private string _passwordUp;
-        private string _inscriptionStatusName;
-        private int _subSwitchView;
+
+        private List<Movie> _movies;
 
         public int SwitchView
         {
@@ -80,6 +88,15 @@ namespace MovieNet.ViewModels
                 RaisePropertyChanged();
             }
         }
+        public string InscriptionStatusName
+        {
+            get { return _inscriptionStatusName; }
+            set
+            {
+                _inscriptionStatusName = value;
+                RaisePropertyChanged();
+            }
+        }
         public string UserConnected
         {
             get { return _userConnected; }
@@ -109,14 +126,10 @@ namespace MovieNet.ViewModels
             get { return _passwordUp; }
             set { _passwordUp = value; }
         }
-        public string InscriptionStatusName
+        public List<Movie> Movies
         {
-            get { return _inscriptionStatusName; }
-            set
-            {
-                _inscriptionStatusName = value;
-                RaisePropertyChanged();
-            }
+            get { return _movies; }
+            set { _movies = value; }
         }
 
         public RelayCommand Signin { get; }
