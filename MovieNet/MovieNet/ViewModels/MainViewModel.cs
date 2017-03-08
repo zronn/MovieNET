@@ -14,9 +14,12 @@ namespace MovieNet.ViewModels
         public MainViewModel()
         {
             SwitchView = 0;
+            SubSwitchView = 0;
 
             ConnectStatusName = "";
             ConnectStatusColor = "Black";
+
+            UserConnected = "";
 
             InscriptionStatusName = "";
 
@@ -25,16 +28,21 @@ namespace MovieNet.ViewModels
 
             ToSignin = new RelayCommand(ToSigninExecute, ToSigninCanExecute);
             ToSignup = new RelayCommand(ToSignupExecute, ToSignupCanExecute);
+
+            ToProfil = new RelayCommand(ToProfilExecute, ToProfilCanExecute);
+            ToMovie = new RelayCommand(ToMovieExecute, ToMovieCanExecute);
         }
 
         private int _switchView;
         private string _connectStatusName;
         private string _connectStatusColor;
+        private string _userConnected;
         private string _loginIn;
         private string _passwordIn;
         private string _loginUp;
         private string _passwordUp;
         private string _inscriptionStatusName;
+        private int _subSwitchView;
 
         public int SwitchView
         {
@@ -42,6 +50,15 @@ namespace MovieNet.ViewModels
             set
             {
                 _switchView = value;
+                RaisePropertyChanged();
+            }
+        }
+        public int SubSwitchView
+        {
+            get { return _subSwitchView; }
+            set
+            {
+                _subSwitchView = value;
                 RaisePropertyChanged();
             }
         }
@@ -60,6 +77,15 @@ namespace MovieNet.ViewModels
             set
             {
                 _connectStatusColor = value;
+                RaisePropertyChanged();
+            }
+        }
+        public string UserConnected
+        {
+            get { return _userConnected; }
+            set
+            {
+                _userConnected = value;
                 RaisePropertyChanged();
             }
         }
@@ -92,11 +118,17 @@ namespace MovieNet.ViewModels
                 RaisePropertyChanged();
             }
         }
+
         public RelayCommand Signin { get; }
         public RelayCommand Signup { get; }
         public RelayCommand ToSignin { get; }
         public RelayCommand ToSignup { get; }
+        public RelayCommand ToProfil { get; }
+        public RelayCommand ToMovie { get; }
 
+        /*
+         * Méthode pour la connexion
+         */
         void SigninExecute()
         {
             MovieDataModelContainer ctx = new MovieDataModelContainer();
@@ -108,8 +140,10 @@ namespace MovieNet.ViewModels
                 ConnectStatusName = "Connexion réussie !";
                 ConnectStatusColor = "Green";
 
-                ApplicationWindow applicationWindow = new ApplicationWindow();
-                applicationWindow.Show();
+                SwitchView = 2;
+                
+                //ApplicationWindow applicationWindow = new ApplicationWindow();
+                //applicationWindow.Show();
                 
             }
             else
@@ -122,6 +156,10 @@ namespace MovieNet.ViewModels
         {
             return true;
         }
+        
+        /*
+         * Méthode pour aller vers la vue de connexion
+         */
         void ToSigninExecute()
         {
             SwitchView = 0;
@@ -131,6 +169,9 @@ namespace MovieNet.ViewModels
             return true;
         }
 
+        /*
+         * Méthode pour la connexion
+         */
         void SignupExecute()
         {
             MovieDataModelContainer ctx = new MovieDataModelContainer();
@@ -166,11 +207,39 @@ namespace MovieNet.ViewModels
         {
             return true;
         }
+
+        /*
+         * Méthode pour aller vers la vue d'inscription
+         */
         void ToSignupExecute()
         {
             SwitchView = 1;
         }
         bool ToSignupCanExecute()
+        {
+            return true;
+        }
+
+        /*
+         * Méthode pour aller vers la sous-vue de profil
+         */
+        void ToProfilExecute()
+        {
+            SubSwitchView = 2;
+        }
+        bool ToProfilCanExecute()
+        {
+            return true;
+        }
+        
+        /*
+         * Méthode pour aller vers la sous-vue des films
+         */
+        void ToMovieExecute()
+        {
+            SubSwitchView = 1;
+        }
+        bool ToMovieCanExecute()
         {
             return true;
         }

@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="MovieNet.Views.ApplicationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MovieNet.Views"
+            xmlns:viewmodels="clr-namespace:MovieNet.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="700">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="ApplicationMovieView" DataType="{x:Type viewmodels:MainViewModel}">
+            <local:ApplicationMovieView />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ApplicationProfilView" DataType="{x:Type viewmodels:MainViewModel}">
+            <local:ApplicationProfilView />
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        
+        <Button x:Name="buttonToFilms" Content="Films" Command="{Binding ToMovie}" HorizontalAlignment="Left" Margin="36,83,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Ajouter" HorizontalAlignment="Left" Margin="36,124,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="buttonToProfil" Content="Profil" Command="{Binding ToProfil}" HorizontalAlignment="Left" Margin="36,164,0,0" VerticalAlignment="Top" Width="75"/>
+
+        <ContentControl Content="{Binding }">
+            <ContentControl.Style>
+                <Style TargetType="{x:Type ContentControl}">
+                    <Setter Property="ContentTemplate" Value="{StaticResource ApplicationMovieView}" />
+                    <Style.Triggers>
+                        
+                        <DataTrigger Binding="{Binding SubSwitchView}" Value="2">
+                            <Setter Property="ContentTemplate" Value="{StaticResource ApplicationProfilView}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+    </Grid>
+</UserControl>

@@ -97,7 +97,6 @@
     <Compile Include="Comment.cs">
       <DependentUpon>MovieDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ApplicationViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Movie.cs">
       <DependentUpon>MovieDataModel.tt</DependentUpon>
@@ -116,8 +115,14 @@
     <Compile Include="User.cs">
       <DependentUpon>MovieDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Views\ApplicationWindow.xaml.cs">
-      <DependentUpon>ApplicationWindow.xaml</DependentUpon>
+    <Compile Include="Views\ApplicationMovieView.xaml.cs">
+      <DependentUpon>ApplicationMovieView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ApplicationProfilView.xaml.cs">
+      <DependentUpon>ApplicationProfilView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ApplicationView.xaml.cs">
+      <DependentUpon>ApplicationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ConnexionView.xaml.cs">
       <DependentUpon>ConnexionView.xaml</DependentUpon>
@@ -128,22 +133,23 @@
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\View1.xaml.cs">
-      <DependentUpon>View1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\View2.xaml.cs">
-      <DependentUpon>View2.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="VMApplication.cs" />
     <Compile Include="VMLocator.cs" />
-    <Page Include="Views\ApplicationWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ApplicationMovieView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ApplicationProfilView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ApplicationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ConnexionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -153,14 +159,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\View1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\View2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

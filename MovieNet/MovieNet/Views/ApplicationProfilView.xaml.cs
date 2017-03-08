@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MovieNet.Views
 {
     /// <summary>
-    /// Logique d'interaction pour View2.xaml
+    /// Logique d'interaction pour ApplicationProfilView.xaml
     /// </summary>
-    public partial class View2 : UserControl
+    public partial class ApplicationProfilView : UserControl
     {
-        public View2()
+        public ApplicationProfilView()
         {
             InitializeComponent();
         }

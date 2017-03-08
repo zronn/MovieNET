@@ -7,7 +7,7 @@
         xmlns:viewmodels="clr-namespace:MovieNet.ViewModels"
         mc:Ignorable="d"
         DataContext="{Binding Source={StaticResource VMLocator}, Path=MainVM}"
-        Title="Movie .NET" Height="350" Width="530">
+        Title="Movie .NET" Height="400" Width="700">
 
     <Window.Resources>
         <DataTemplate x:Key="ConnexionViewTemplate" DataType="{x:Type viewmodels:MainViewModel}">
@@ -16,6 +16,10 @@
 
         <DataTemplate x:Key="InscriptionViewTemplate" DataType="{x:Type viewmodels:MainViewModel}">
             <local:InscriptionView />
+        </DataTemplate>
+
+        <DataTemplate x:Key="ApplicationViewTemplate" DataType="{x:Type viewmodels:MainViewModel}">
+            <local:ApplicationView />
         </DataTemplate>
     </Window.Resources>
     
@@ -28,6 +32,9 @@
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding SwitchView}" Value="1">
                             <Setter Property="ContentTemplate" Value="{StaticResource InscriptionViewTemplate}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding SwitchView}" Value="2">
+                            <Setter Property="ContentTemplate" Value="{StaticResource ApplicationViewTemplate}" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

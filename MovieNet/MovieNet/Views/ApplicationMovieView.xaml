@@ -1,18 +1,16 @@
-﻿<UserControl x:Class="MovieNet.Views.View1"
+﻿<UserControl x:Class="MovieNet.Views.ApplicationMovieView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MovieNet.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="400" d:DesignWidth="700">
     <Grid>
-        <Label Content="{Binding Label}" HorizontalAlignment="Left" Margin="294,24,0,0" VerticalAlignment="Top"/>
-
         <DataGrid x:Name="ListMovie" ItemsSource="{Binding Movies}"
                   SelectionMode="Single" SelectionUnit="FullRow"
-                  HorizontalAlignment="Left" Height="260" Margin="153,80,0,0" VerticalAlignment="Top"
-                  AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" Width="414">
+                  HorizontalAlignment="Left" Height="264" Margin="159,102,0,0" VerticalAlignment="Top"
+                  AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" Width="509">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="IdColumn" Binding="{Binding Id}" 
                                     Header="Id" Width="Auto"/>
