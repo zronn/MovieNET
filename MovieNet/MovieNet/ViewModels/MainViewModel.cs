@@ -40,6 +40,7 @@ namespace MovieNet.ViewModels
             ToAddMovie = new RelayCommand(ToAddMovieExecute, ToAddMovieCanExecute);
             ToValidAddMovie = new RelayCommand(ToValidAddMovieExecute, ToValidAddMovieCanExecute);
             ToMovie = new RelayCommand(ToMovieExecute, ToMovieCanExecute);
+            ToMovieDetail = new RelayCommand(ToMovieDetailExecute, ToMovieDetailCanExecute);
             ToDisconnect = new RelayCommand(ToDisconnectExecute, ToDisconnectCanExecute);
         }
 
@@ -237,6 +238,7 @@ namespace MovieNet.ViewModels
         public RelayCommand ToDisconnect { get; }
         public RelayCommand ProfilEdit { get; }
         public RelayCommand MovieSearch { get; }
+        public RelayCommand ToMovieDetail { get; }
 
         /*
          * Méthode pour la connexion
@@ -503,6 +505,20 @@ namespace MovieNet.ViewModels
             Movies = ctx.MovieSet.Where(m => m.Title.Contains(MovieTitleSearch)).ToList();
         }
         bool MovieSearchCanExecute()
+        {
+            return true;
+        }
+
+        void ToMovieDetailExecute()
+        {
+            var test = new RelayCommand<Movie>(
+                item =>
+                {
+                    var selectedItem = item;
+                });
+            // TODO Test en cours sur cette partie
+        }
+        bool ToMovieDetailCanExecute()
         {
             return true;
         }
