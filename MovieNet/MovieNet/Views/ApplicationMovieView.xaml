@@ -7,10 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="700">
     <Grid>
-        <DataGrid x:Name="ListMovie" ItemsSource="{Binding Movies}"
+        <DataGrid x:Name="ListMovie" ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedItem}"
                   SelectionMode="Single" SelectionUnit="FullRow"
                   HorizontalAlignment="Left" Height="264" Margin="158,81,0,0" VerticalAlignment="Top"
                   AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" Width="509">
+            <DataGrid.InputBindings>
+                <MouseBinding
+                    MouseAction="LeftClick"
+                    Command="{Binding MouseClickCommand}"
+                    CommandParameter="{Binding SearchItems/}" 
+                />
+            </DataGrid.InputBindings>
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="IdColumn" Binding="{Binding Id}" 
                                     Header="Id" Width="Auto"/>
