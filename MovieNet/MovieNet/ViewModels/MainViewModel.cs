@@ -309,6 +309,7 @@ namespace MovieNet.ViewModels
 
         void ProfilEditExecute()
         {
+            StatusColor = "";
             // Si uniquement le login
             if (String.IsNullOrEmpty(LoginEdit))
             {
@@ -357,6 +358,7 @@ namespace MovieNet.ViewModels
             {
                 if (LoginEdit == UserNameConnected)
                 {
+                    StatusColor = "Red";
                     ProfilEditStatusName = "Ce login est déjà le votre actuellement";
                 }
                 else

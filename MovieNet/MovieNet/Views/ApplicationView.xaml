@@ -23,7 +23,8 @@
         <Button Content="Ajouter" HorizontalAlignment="Left" Margin="36,124,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="buttonToProfil" Content="Profil" Command="{Binding ToProfil}" HorizontalAlignment="Left" Margin="36,164,0,0" VerticalAlignment="Top" Width="75"/>
 
-        <Label Content="{Binding UserNameConnected}"  HorizontalAlignment="Left" Margin="36,220,0,0" VerticalAlignment="Top"/>
+        <Label Content="Connecté avec :"  HorizontalAlignment="Left" Margin="26,267,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding UserNameConnected}"  HorizontalAlignment="Left" Margin="28,288,0,0" VerticalAlignment="Top"/>
 
         <Button x:Name="buttonToDisconnect" Content="Déconnexion" Command="{Binding ToDisconnect}" HorizontalAlignment="Left" Margin="36,324,0,0" VerticalAlignment="Top" Width="75"/>
 
