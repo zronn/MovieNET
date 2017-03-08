@@ -19,17 +19,20 @@
     </UserControl.Resources>
 
     <Grid>
-        
-        <Button x:Name="buttonToFilms" Content="Films" Command="{Binding ToMovie}" HorizontalAlignment="Left" Margin="36,83,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Movie .NET" Height="50" Margin="29,17,531,333" FontSize="25"/>
+
+        <Button x:Name="buttonToMovie" Content="Films" Command="{Binding ToMovie}" HorizontalAlignment="Left" Margin="36,83,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Ajouter" HorizontalAlignment="Left" Margin="36,124,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="buttonToProfil" Content="Profil" Command="{Binding ToProfil}" HorizontalAlignment="Left" Margin="36,164,0,0" VerticalAlignment="Top" Width="75"/>
 
-        <ContentControl Content="{Binding }">
+        <Button x:Name="buttonToDisconnect" Content="Déconnexion" Command="{Binding ToDisconnect}" HorizontalAlignment="Left" Margin="36,324,0,0" VerticalAlignment="Top" Width="75"/>
+
+        <ContentControl>
             <ContentControl.Style>
                 <Style TargetType="{x:Type ContentControl}">
                     <Setter Property="ContentTemplate" Value="{StaticResource ApplicationMovieView}" />
                     <Style.Triggers>
-                        
+
                         <DataTrigger Binding="{Binding SubSwitchView}" Value="2">
                             <Setter Property="ContentTemplate" Value="{StaticResource ApplicationProfilView}" />
                         </DataTrigger>

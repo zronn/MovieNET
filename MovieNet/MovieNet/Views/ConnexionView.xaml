@@ -6,10 +6,10 @@
              xmlns:local="clr-namespace:MovieNet.Views"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="700">
-    <Grid>
+    <Grid Margin="0,0,0,26">
         <Label Content="Movie .NET" HorizontalAlignment="Left" Margin="259,25,0,0" VerticalAlignment="Top" FontSize="36"/>
         
-        <Label x:Name="ConnexionStatus" Content="{Binding ConnectStatusName}" Foreground="{Binding ConnectStatusColor}" HorizontalAlignment="Left" Height="28" Margin="197,101,0,0" VerticalAlignment="Top" Width="445"/>
+        <Label x:Name="ConnexionStatus" Content="{Binding ConnectStatusName}" Foreground="{Binding ConnectStatusColor}" HorizontalAlignment="Left" Height="28" Margin="176,101,0,0" VerticalAlignment="Top" Width="445"/>
 
         <Label Content="Login" HorizontalAlignment="Left" Margin="176,134,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="LoginIn" Text="{Binding LoginIn}" HorizontalAlignment="Left" Height="23" Margin="418,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -17,7 +17,7 @@
         <TextBox x:Name="PasswordIn" Text="{Binding PasswordIn}" HorizontalAlignment="Left" Height="23" Margin="418,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="Signin" Command="{Binding Signin}" Content="Connexion" HorizontalAlignment="Left" Margin="463,241,0,0" VerticalAlignment="Top" Width="75"/>
 
-        <Label Content="Pas encore inscrit ?" HorizontalAlignment="Left" Margin="176,322,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="buttonToSignup" Content="Inscription" Command="{Binding ToSignup}" HorizontalAlignment="Left" Margin="463,328,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Pas encore inscrit ?" HorizontalAlignment="Left" Margin="176,309,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="buttonToSignup" Content="Inscription" Command="{Binding ToSignup}" HorizontalAlignment="Left" Margin="463,307,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </UserControl>

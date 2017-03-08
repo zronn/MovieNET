@@ -19,7 +19,7 @@ namespace MovieNet.ViewModels
             ConnectStatusName = "";
             ConnectStatusColor = "Black";
 
-            UserConnected = "";
+            UserIdConnected = 0;
 
             InscriptionStatusName = "";
 
@@ -34,6 +34,8 @@ namespace MovieNet.ViewModels
 
             ToProfil = new RelayCommand(ToProfilExecute, ToProfilCanExecute);
             ToMovie = new RelayCommand(ToMovieExecute, ToMovieCanExecute);
+
+            ToDisconnect = new RelayCommand(ToDisconnectExecute, ToDisconnectCanExecute);
         }
 
         private int _switchView;
@@ -42,7 +44,7 @@ namespace MovieNet.ViewModels
         private string _connectStatusColor;
         private string _inscriptionStatusName;
 
-        private string _userConnected;
+        private int _userIdConnected;
 
         private string _loginIn;
         private string _passwordIn;
@@ -97,12 +99,12 @@ namespace MovieNet.ViewModels
                 RaisePropertyChanged();
             }
         }
-        public string UserConnected
+        public int UserIdConnected
         {
-            get { return _userConnected; }
+            get { return _userIdConnected; }
             set
             {
-                _userConnected = value;
+                _userIdConnected = value;
                 RaisePropertyChanged();
             }
         }
@@ -118,8 +120,8 @@ namespace MovieNet.ViewModels
         }
         public string LoginUp
         {
-            get { return _loginIn; }
-            set { _loginIn = value; }
+            get { return _loginUp; }
+            set { _loginUp = value; }
         }
         public string PasswordUp
         {
@@ -138,6 +140,7 @@ namespace MovieNet.ViewModels
         public RelayCommand ToSignup { get; }
         public RelayCommand ToProfil { get; }
         public RelayCommand ToMovie { get; }
+        public RelayCommand ToDisconnect { get; }
 
         /*
          * Méthode pour la connexion
@@ -146,13 +149,10 @@ namespace MovieNet.ViewModels
         {
             MovieDataModelContainer ctx = new MovieDataModelContainer();
 
-            var query = ctx.UserSet.Where(u => u.Login.Equals(LoginIn) && u.Password.Equals(PasswordIn));
+            var query = ctx.UserSet.Where(u => u.Login.Equals(LoginIn) && u.Password.Equals(PasswordIn)).ToList();
 
             if (query.Any())
             {
-                ConnectStatusName = "Connexion réussie !";
-                ConnectStatusColor = "Green";
-
                 SwitchView = 2;
                 
                 //ApplicationWindow applicationWindow = new ApplicationWindow();
@@ -253,6 +253,22 @@ namespace MovieNet.ViewModels
             SubSwitchView = 1;
         }
         bool ToMovieCanExecute()
+        {
+            return true;
+        }
+
+        /*
+         * Méthode pour se déconnecter
+         */
+        void ToDisconnectExecute()
+        {
+            SwitchView = 0;
+            SubSwitchView = 0;
+            UserIdConnected = 0;
+            ConnectStatusColor = "Green";
+            ConnectStatusName = "Vous avez correctement été déconnecté!";
+        }
+        bool ToDisconnectCanExecute()
         {
             return true;
         }

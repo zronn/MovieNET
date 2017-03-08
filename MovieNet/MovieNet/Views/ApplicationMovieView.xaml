@@ -9,7 +9,7 @@
     <Grid>
         <DataGrid x:Name="ListMovie" ItemsSource="{Binding Movies}"
                   SelectionMode="Single" SelectionUnit="FullRow"
-                  HorizontalAlignment="Left" Height="264" Margin="159,102,0,0" VerticalAlignment="Top"
+                  HorizontalAlignment="Left" Height="264" Margin="158,81,0,0" VerticalAlignment="Top"
                   AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" Width="509">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="IdColumn" Binding="{Binding Id}" 
