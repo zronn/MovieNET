@@ -19,11 +19,11 @@
     </UserControl.Resources>
 
     <Grid>
-        <Label Content="Movie .NET" Height="50" Margin="29,17,531,333" FontSize="25"/>
-
         <Button x:Name="buttonToMovie" Content="Films" Command="{Binding ToMovie}" HorizontalAlignment="Left" Margin="36,83,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Ajouter" HorizontalAlignment="Left" Margin="36,124,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="buttonToProfil" Content="Profil" Command="{Binding ToProfil}" HorizontalAlignment="Left" Margin="36,164,0,0" VerticalAlignment="Top" Width="75"/>
+
+        <Label Content="{Binding UserNameConnected}"  HorizontalAlignment="Left" Margin="36,220,0,0" VerticalAlignment="Top"/>
 
         <Button x:Name="buttonToDisconnect" Content="Déconnexion" Command="{Binding ToDisconnect}" HorizontalAlignment="Left" Margin="36,324,0,0" VerticalAlignment="Top" Width="75"/>
 

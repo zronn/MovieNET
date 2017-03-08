@@ -20,6 +20,7 @@ namespace MovieNet.ViewModels
             ConnectStatusColor = "Black";
 
             UserIdConnected = 0;
+            UserNameConnected = "";
 
             InscriptionStatusName = "";
 
@@ -45,6 +46,7 @@ namespace MovieNet.ViewModels
         private string _inscriptionStatusName;
 
         private int _userIdConnected;
+        private string _userNameConnected;
 
         private string _loginIn;
         private string _passwordIn;
@@ -108,6 +110,15 @@ namespace MovieNet.ViewModels
                 RaisePropertyChanged();
             }
         }
+        public string UserNameConnected
+        {
+            get { return _userNameConnected; }
+            set
+            {
+                _userNameConnected = value;
+                RaisePropertyChanged();
+            }
+        }
         public string LoginIn
         {
             get { return _loginIn; }
@@ -154,10 +165,9 @@ namespace MovieNet.ViewModels
             if (query.Any())
             {
                 SwitchView = 2;
-                
-                //ApplicationWindow applicationWindow = new ApplicationWindow();
-                //applicationWindow.Show();
-                
+
+                UserIdConnected = query[0].Id;
+                UserNameConnected = query[0].Login; // La value n'est pas bindée dans l'édition ?
             }
             else
             {

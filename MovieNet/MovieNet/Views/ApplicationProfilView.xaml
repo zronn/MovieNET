@@ -10,13 +10,13 @@
         <Label Content="Edition du profil" HorizontalAlignment="Left" Margin="313,72,0,0" VerticalAlignment="Top" FontSize="25"/>
         
         <Label Content="Login" HorizontalAlignment="Left" Margin="244,159,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="457,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="LoginEdit" Text="{Binding UserNameConnected}" HorizontalAlignment="Left" Height="23" Margin="457,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         
         <Label Content="Password" HorizontalAlignment="Left" Margin="244,204,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="457,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PasswordEdit" HorizontalAlignment="Left" Height="23" Margin="457,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
         <Label Content="Confirmer le password" HorizontalAlignment="Left" Margin="244,247,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="457,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PasswordEditConfirm" HorizontalAlignment="Left" Height="23" Margin="457,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button Content="Valider" HorizontalAlignment="Left" Margin="502,314,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </UserControl>
