@@ -115,6 +115,9 @@
     <Compile Include="User.cs">
       <DependentUpon>MovieDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\ApplicationAddMovieView.xaml.cs">
+      <DependentUpon>ApplicationAddMovieView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ApplicationMovieView.xaml.cs">
       <DependentUpon>ApplicationMovieView.xaml</DependentUpon>
     </Compile>
@@ -138,6 +141,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ApplicationAddMovieView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ApplicationMovieView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
