@@ -511,6 +511,8 @@ namespace MovieNet.ViewModels
 
         void ToMovieDetailExecute()
         {
+            var faire = 2;
+
             var test = new RelayCommand<Movie>(
                 item =>
                 {
