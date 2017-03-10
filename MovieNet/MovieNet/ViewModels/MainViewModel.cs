@@ -554,6 +554,24 @@ namespace MovieNet.ViewModels
             MovieDetailType = ListMovie.Type.Value;
             MovieDetailUser = ListMovie.User.Login;
 
+            int NoteAvg = 0;
+
+            if (ListMovie.Note.Count > 0)
+            {
+                int NoteCount = ListMovie.Note.Count;
+
+                foreach (MovieNet.Note note in ListMovie.Note)
+                {
+                    NoteAvg += note.Value;
+                }
+
+                NoteAvg = NoteAvg / NoteCount;
+            }
+
+            Console.WriteLine(NoteAvg);
+
+            var test = 2;
+
             // TODO Get les nom d'utilisateur et genre
         }
     }
