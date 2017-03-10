@@ -8,21 +8,22 @@
              d:DesignHeight="400" d:DesignWidth="700">
     <Grid>
 
-        <Label x:Name="AddMovie" Content="Ajout de Film" HorizontalAlignment="Left" Margin="300,32,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Label x:Name="AddMovie" Content="Ajout de Film" HorizontalAlignment="Left" Margin="313,72,0,0" VerticalAlignment="Top" FontSize="25"/>
 
-        <Label Content="{Binding AddMovieStatusName}" Foreground="Red" HorizontalAlignment="Left" Margin="167,90,0,0" VerticalAlignment="Top" Width="398"/>
+        <Label Content="{Binding AddMovieStatusName}" Foreground="Red" HorizontalAlignment="Left" Margin="244,131,0,0" VerticalAlignment="Top" Width="398"/>
 
-        <Label Content="Titre" HorizontalAlignment="Left" Margin="167,115,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Title" Text="{Binding TitleAdd}" HorizontalAlignment="Left" Height="23" Margin="300,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
+        <Label Content="Titre" HorizontalAlignment="Left" Margin="244,159,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Title" Text="{Binding TitleAdd}" HorizontalAlignment="Left" Height="23" Margin="348,159,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
 
-        <Label Content="Desciption" HorizontalAlignment="Left" Margin="167,191,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Description" Text="{Binding DescriptionAdd}" HorizontalAlignment="Left" Height="44" Margin="300,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
+        <Label Content="Desciption" HorizontalAlignment="Left" Margin="244,199,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Description" Text="{Binding DescriptionAdd}" HorizontalAlignment="Left" Height="44" Margin="348,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
 
+        <Label Content="Genre" HorizontalAlignment="Left" Margin="244,262,0,0" VerticalAlignment="Top"/>
         <ComboBox ItemsSource="{Binding Types}"  DisplayMemberPath="Value" SelectedValuePath="Id"  SelectedValue="{Binding Path=Type}"
-                  HorizontalAlignment="Left" Margin="485,239,0,0" VerticalAlignment="Top" Width="80" Height="20"/>
+                  HorizontalAlignment="Left" Margin="348,262,0,0" VerticalAlignment="Top" Width="80" Height="20"/>
 
 
-        <Button x:Name="ButtonValidAddMovie" Command="{Binding ToValidAddMovie}" Content="Ajouter" HorizontalAlignment="Left" Margin="445,330,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="ButtonValidAddMovie" Command="{Binding ToValidAddMovie}" Content="Ajouter" HorizontalAlignment="Left" Margin="541,330,0,0" VerticalAlignment="Top" Width="72"/>
 
     </Grid>
 </UserControl>
