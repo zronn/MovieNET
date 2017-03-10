@@ -216,10 +216,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MovieDatabase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="MovieDatabase_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>MovieDatabase.mdf</DependentUpon>
     </Content>
     <Content Include="MovieDataModel.Context.tt">

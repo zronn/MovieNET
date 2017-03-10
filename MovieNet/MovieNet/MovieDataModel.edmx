@@ -68,6 +68,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="CommentSet">
     <Key>
@@ -223,6 +224,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Movie" Relationship="MovieDataModel.TypeMovie" FromRole="Type" ToRole="Movie" />
+          <Property Name="Value" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -293,6 +295,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(MovieDataModel.Type)">
         <MappingFragment StoreEntitySet="TypeSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

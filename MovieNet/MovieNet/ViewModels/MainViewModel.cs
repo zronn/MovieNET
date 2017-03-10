@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using MovieNet.Views;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Input;
 
 namespace MovieNet.ViewModels
 {
@@ -26,6 +29,8 @@ namespace MovieNet.ViewModels
 
             MovieDataModelContainer ctx = new MovieDataModelContainer();
             Movies = ctx.MovieSet.ToList();
+            
+            Types = ctx.TypeSet.ToList();            
 
             Signin = new RelayCommand(SigninExecute, SigninCanExecute);
             Signup = new RelayCommand(SignupExecute, SignupCanExecute);
@@ -68,6 +73,7 @@ namespace MovieNet.ViewModels
 
         private string _titleAdd;
         private string _descriptionAdd;
+        private int _type;
 
         private string _addMovieStatusName;
 
@@ -167,6 +173,18 @@ namespace MovieNet.ViewModels
             get { return _descriptionAdd; }
             set { _descriptionAdd = value; }
         }
+
+        public int Type
+        {
+            get { return _type; }
+            set
+            {
+                _type = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
         public string LoginIn
         {
             get { return _loginIn; }
@@ -208,12 +226,20 @@ namespace MovieNet.ViewModels
         public List<Movie> Movies
         {
             get { return _movies; }
-            set { _movies = value; }
+            set
+            {
+                _movies = value;
+                RaisePropertyChanged();
+            }
         }
         public List<Type> Types
         {
             get { return _types; }
-            set { _types = value; }
+            set
+            {
+                _types = value;
+                RaisePropertyChanged();
+            }
         }
 
 
@@ -327,9 +353,6 @@ namespace MovieNet.ViewModels
         void ToAddMovieExecute()
         {
             SubSwitchView = 1;
-
-            /*MovieDataModelContainer ctx = new MovieDataModelContainer();
-            Types = ctx.TypeSet.ToList();*/
         }
         bool ToAddMovieCanExecute()
         {
@@ -341,21 +364,44 @@ namespace MovieNet.ViewModels
          */
         void ToValidAddMovieExecute()
         {
-            var Valid = true;
-            if (String.IsNullOrEmpty(TitleAdd))
-            {
-                AddMovieStatusName = "Veuillez Ajouter un titre";
-                Valid = false;
-            }
-            if (String.IsNullOrEmpty(DescriptionAdd))
-            {
-                AddMovieStatusName = "Veuillez Ajouter une description";
-                Valid = false;
-            }
+
+            MovieDataModelContainer ctx = new MovieDataModelContainer();
+            Movie movie = new Movie();
+
+            movie.Title = TitleAdd;
+            movie.Description = DescriptionAdd;
+            movie.User = ctx.UserSet.Find(UserIdConnected); ;
+            movie.Type = ctx.TypeSet.Find(Type);
+            ctx.MovieSet.Add(movie);
+            ctx.SaveChanges();
+
+            Movies = ctx.MovieSet.ToList();
+
+            SubSwitchView = 0;
+
         }
         bool ToValidAddMovieCanExecute()
         {
-            return true;
+            if (String.IsNullOrEmpty(TitleAdd))
+            {
+                AddMovieStatusName = "Veuillez Ajouter un titre";
+                return false;
+            }
+            else if (String.IsNullOrEmpty(DescriptionAdd))
+            {
+                AddMovieStatusName = "Veuillez Ajouter une description";
+                return false;
+
+            }
+            else if (Type == default(int))
+            {
+                AddMovieStatusName = "Veuillez choisir une categorie de Film svp";
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         /*

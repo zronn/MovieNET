@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/05/2017 02:09:58
+-- Date Created: 03/10/2017 12:08:36
 -- Generated from EDMX file: C:\Users\Badredine\Source\Repos\MovieNET\MovieNet\MovieNet\MovieDataModel.edmx
 -- --------------------------------------------------
 
@@ -89,7 +89,8 @@ GO
 
 -- Creating table 'TypeSet'
 CREATE TABLE [dbo].[TypeSet] (
-    [Id] int IDENTITY(1,1) NOT NULL
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Value] nvarchar(max)  NOT NULL
 );
 GO
 
