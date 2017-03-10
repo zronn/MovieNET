@@ -7,16 +7,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="700">
     <Grid>
+
+        <Label Content="Préciser : " HorizontalAlignment="Left" Margin="153,82,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <TextBox x:Name="MovieTitleSearch" Text="{Binding MovieTitleSearch}" HorizontalAlignment="Left" Height="23" Margin="438,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="MovieSearch" Content="Rechercher" Command="{Binding MovieSearch}" HorizontalAlignment="Left" Margin="592,83,0,0" VerticalAlignment="Top" Width="75" Height="23"/>
+
         <DataGrid x:Name="ListMovie" ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedItem}"
-                  SelectionMode="Single" SelectionUnit="FullRow"
-                  HorizontalAlignment="Left" Height="264" Margin="158,81,0,0" VerticalAlignment="Top"
+                  SelectionMode="Single" SelectionUnit="FullRow" GridLinesVisibility="None"
+                  HorizontalAlignment="Left" Height="227" Margin="158,118,0,0" VerticalAlignment="Top"
                   AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" Width="509">
             <DataGrid.InputBindings>
-                <MouseBinding
+                <MouseBinding 
                     MouseAction="LeftClick"
-                    Command="{Binding MouseClickCommand}"
-                    CommandParameter="{Binding SearchItems/}" 
-                />
+                    Command="{Binding ToMovieDetail}"
+                    CommandParameter="{Binding ElementName=ListMovie, Path=SelectedItem}" />
             </DataGrid.InputBindings>
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="IdColumn" Binding="{Binding Id}" 
@@ -35,5 +39,6 @@
                                     Header="Comment" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
+
     </Grid>
 </UserControl>

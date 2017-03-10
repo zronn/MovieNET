@@ -11,13 +11,13 @@
         
         <Label x:Name="ConnexionStatus" Content="{Binding ConnectStatusName}" Foreground="{Binding StatusColor}" HorizontalAlignment="Left" Height="28" Margin="176,101,0,0" VerticalAlignment="Top" Width="445"/>
 
-        <Label Content="Login" HorizontalAlignment="Left" Margin="176,134,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nom d'utilisateur" HorizontalAlignment="Left" Margin="176,134,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="LoginIn" Text="{Binding LoginIn}" HorizontalAlignment="Left" Height="23" Margin="418,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="176,179,0,0" VerticalAlignment="Top"/>
+        <Label Content="Mot de passe" HorizontalAlignment="Left" Margin="176,179,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="PasswordIn" Text="{Binding PasswordIn}" HorizontalAlignment="Left" Height="23" Margin="418,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="Signin" Command="{Binding Signin}" Content="Connexion" HorizontalAlignment="Left" Margin="463,241,0,0" VerticalAlignment="Top" Width="75"/>
 
-        <Label Content="Pas encore inscrit ?" HorizontalAlignment="Left" Margin="176,309,0,0" VerticalAlignment="Top"/>
+        <Label Content="Pas encore inscrit ?" HorizontalAlignment="Left" Margin="336,304,0,0" VerticalAlignment="Top"/>
         <Button x:Name="buttonToSignup" Content="Inscription" Command="{Binding ToSignup}" HorizontalAlignment="Left" Margin="463,307,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </UserControl>
