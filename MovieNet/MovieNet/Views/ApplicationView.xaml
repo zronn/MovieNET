@@ -20,6 +20,10 @@
         <DataTemplate x:Key="ApplicationProfilView" DataType="{x:Type viewmodels:MainViewModel}">
             <local:ApplicationProfilView />
         </DataTemplate>
+
+        <DataTemplate x:Key="ApplicationMovieDetailView" DataType="{x:Type viewmodels:MainViewModel}">
+            <local:ApplicationMovieDetailView />
+        </DataTemplate>
     </UserControl.Resources>
 
     <Grid>
@@ -45,6 +49,9 @@
                         </DataTrigger>
                         <DataTrigger Binding="{Binding SubSwitchView}" Value="2">
                             <Setter Property="ContentTemplate" Value="{StaticResource ApplicationProfilView}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding SubSwitchView}" Value="3">
+                            <Setter Property="ContentTemplate" Value="{StaticResource ApplicationMovieDetailView}" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

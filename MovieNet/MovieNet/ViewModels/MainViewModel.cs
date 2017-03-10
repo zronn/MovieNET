@@ -40,7 +40,7 @@ namespace MovieNet.ViewModels
             ToAddMovie = new RelayCommand(ToAddMovieExecute, ToAddMovieCanExecute);
             ToValidAddMovie = new RelayCommand(ToValidAddMovieExecute, ToValidAddMovieCanExecute);
             ToMovie = new RelayCommand(ToMovieExecute, ToMovieCanExecute);
-            ToMovieDetail = new RelayCommand(ToMovieDetailExecute, ToMovieDetailCanExecute);
+            ToMovieDetail = new RelayCommand<MovieNet.Movie>((s) => ToMovieDetailExecute(s));
             ToDisconnect = new RelayCommand(ToDisconnectExecute, ToDisconnectCanExecute);
         }
 
@@ -71,6 +71,9 @@ namespace MovieNet.ViewModels
         private string _addMovieStatusName;
 
         private string _movieTitleSearch;
+
+        private string _movieDetailTitle;
+        private string _movieDetailDescription;
 
         private List<Movie> _movies;
         private List<Type> _types;
@@ -212,6 +215,41 @@ namespace MovieNet.ViewModels
             set { _movieTitleSearch = value; }
         }
 
+        public string MovieDetailTitle
+        {
+            get { return _movieDetailTitle; }
+            set
+            {
+                _movieDetailTitle = value;
+                RaisePropertyChanged();
+            }
+        }
+        public string MovieDetailDescription
+        {
+            get { return _movieDetailDescription; }
+            set
+            {
+                _movieDetailDescription = value;
+                RaisePropertyChanged();
+            }
+        }
+        private string _movieDetailUser;
+
+        public string MovieDetailUser
+        {
+            get { return _movieDetailUser; }
+            set { _movieDetailUser = value; }
+        }
+        private string _movieDetailType;
+
+        public string MovieDetailType
+        {
+            get { return _movieDetailType; }
+            set { _movieDetailType = value; }
+        }
+
+
+
         public List<Movie> Movies
         {
             get { return _movies; }
@@ -238,7 +276,7 @@ namespace MovieNet.ViewModels
         public RelayCommand ToDisconnect { get; }
         public RelayCommand ProfilEdit { get; }
         public RelayCommand MovieSearch { get; }
-        public RelayCommand ToMovieDetail { get; }
+        public RelayCommand<MovieNet.Movie> ToMovieDetail { get; private set; }
 
         /*
          * Méthode pour la connexion
@@ -509,20 +547,17 @@ namespace MovieNet.ViewModels
             return true;
         }
 
-        void ToMovieDetailExecute()
+        private void ToMovieDetailExecute(MovieNet.Movie ListMovie)
         {
-            var faire = 2;
+            SubSwitchView = 3;
+            MovieDetailTitle = ListMovie.Title;
+            MovieDetailDescription = ListMovie.Description;
 
-            var test = new RelayCommand<Movie>(
-                item =>
-                {
-                    var selectedItem = item;
-                });
-            // TODO Test en cours sur cette partie
-        }
-        bool ToMovieDetailCanExecute()
-        {
-            return true;
+            var test = ListMovie.Type;
+
+            MovieDataModelContainer ctx = new MovieDataModelContainer();
+            var TypeDetail = ctx.TypeSet.Where(t => t.Id.Equals(ListMovie.Type));
+            // TODO Get les nom d'utilisateur et genre
         }
     }
 }

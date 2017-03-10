@@ -118,6 +118,9 @@
     <Compile Include="Views\ApplicationAddMovieView.xaml.cs">
       <DependentUpon>ApplicationAddMovieView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ApplicationMovieDetailView.xaml.cs">
+      <DependentUpon>ApplicationMovieDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ApplicationMovieView.xaml.cs">
       <DependentUpon>ApplicationMovieView.xaml</DependentUpon>
     </Compile>
@@ -142,6 +145,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\ApplicationAddMovieView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ApplicationMovieDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
