@@ -8,7 +8,7 @@
              d:DesignHeight="400" d:DesignWidth="700">
     <Grid>
 
-        <Label Content="Préciser : " HorizontalAlignment="Left" Margin="153,78,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Préciser le titre : " HorizontalAlignment="Left" Margin="153,78,0,0" VerticalAlignment="Top" FontSize="16"/>
         <TextBox x:Name="MovieTitleSearch" Text="{Binding MovieTitleSearch}" HorizontalAlignment="Left" Height="23" Margin="426,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="MovieSearch" Content="Rechercher" Command="{Binding MovieSearch}" HorizontalAlignment="Left" Margin="592,83,0,0" VerticalAlignment="Top" Width="75" Height="23"/>
 
@@ -34,7 +34,7 @@
                 <DataGridTextColumn x:Name="UserColumn" Binding="{Binding User.Login}" 
                                     Header="User" Width="Auto"/>
                 <DataGridTextColumn x:Name="NoteColumn" Binding="{Binding Note.Count}"
-                                    Header="Note" Width="Auto"/>
+                                    Header="Nombre de note" Width="Auto"/>
                 <DataGridTextColumn x:Name="CommentColumn" Binding="{Binding Comment.Count}" 
                                     Header="Comment" Width="Auto"/>
             </DataGrid.Columns>
