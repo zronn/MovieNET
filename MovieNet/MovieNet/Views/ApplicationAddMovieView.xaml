@@ -14,9 +14,13 @@
 
         <Label Content="Titre" HorizontalAlignment="Left" Margin="167,115,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="Title" Text="{Binding TitleAdd}" HorizontalAlignment="Left" Height="23" Margin="300,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
-        
+
         <Label Content="Desciption" HorizontalAlignment="Left" Margin="167,191,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="Description" Text="{Binding DescriptionAdd}" HorizontalAlignment="Left" Height="44" Margin="300,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
+
+        <ComboBox ItemsSource="{Binding Types}"  DisplayMemberPath="Value" SelectedValuePath="Id"  SelectedValue="{Binding Path=Type}"
+                  HorizontalAlignment="Left" Margin="485,239,0,0" VerticalAlignment="Top" Width="80" Height="20"/>
+
 
         <Button x:Name="ButtonValidAddMovie" Command="{Binding ToValidAddMovie}" Content="Ajouter" HorizontalAlignment="Left" Margin="445,330,0,0" VerticalAlignment="Top" Width="120"/>
 
