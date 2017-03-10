@@ -23,7 +23,7 @@
                   HorizontalAlignment="Left" Margin="348,262,0,0" VerticalAlignment="Top" Width="80" Height="20"/>
 
 
-        <Button x:Name="ButtonValidAddMovie" Command="{Binding ToValidAddMovie}" Content="Ajouter" HorizontalAlignment="Left" Margin="541,330,0,0" VerticalAlignment="Top" Width="72"/>
+        <Button x:Name="ButtonValidAddMovie" Command="{Binding ToValidAddMovie}" Content="Ajouter" HorizontalAlignment="Left" Margin="541,319,0,0" VerticalAlignment="Top" Width="72"/>
 
     </Grid>
 </UserControl>

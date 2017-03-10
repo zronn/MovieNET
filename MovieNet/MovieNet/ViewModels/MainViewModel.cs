@@ -23,6 +23,7 @@ namespace MovieNet.ViewModels
             ConnectStatusName = "";
             InscriptionStatusName = "";
             ProfilEditStatusName = "";
+            AddMovieStatusName = "";
 
             UserIdConnected = 0;
             UserNameConnected = "";
@@ -454,18 +455,18 @@ namespace MovieNet.ViewModels
         {
             if (String.IsNullOrEmpty(TitleAdd))
             {
-                AddMovieStatusName = "Veuillez Ajouter un titre";
+                AddMovieStatusName = "Veuillez ajouter un titre";
                 return false;
             }
             else if (String.IsNullOrEmpty(DescriptionAdd))
             {
-                AddMovieStatusName = "Veuillez Ajouter une description";
+                AddMovieStatusName = "Veuillez ajouter une description";
                 return false;
 
             }
             else if (Type == default(int))
             {
-                AddMovieStatusName = "Veuillez choisir une categorie de Film svp";
+                AddMovieStatusName = "Veuillez choisir une catégorie de film";
                 return false;
             }
             else
