@@ -81,6 +81,9 @@ namespace MovieNet.ViewModels
 
         private string _movieDetailTitle;
         private string _movieDetailDescription;
+        private string _movieDetailUser;
+        private string _movieDetailType;
+        private string _movieDetailNote;
 
         private List<Movie> _movies;
         private List<Type> _types;
@@ -232,7 +235,11 @@ namespace MovieNet.ViewModels
         public string MovieTitleSearch
         {
             get { return _movieTitleSearch; }
-            set { _movieTitleSearch = value; }
+            set
+            {
+                _movieTitleSearch = value;
+                RaisePropertyChanged();
+            }
         }
 
         public string MovieDetailTitle
@@ -253,23 +260,20 @@ namespace MovieNet.ViewModels
                 RaisePropertyChanged();
             }
         }
-        private string _movieDetailUser;
 
         public string MovieDetailUser
         {
             get { return _movieDetailUser; }
             set { _movieDetailUser = value; }
         }
-        private string _movieDetailType;
 
         public string MovieDetailType
         {
             get { return _movieDetailType; }
             set { _movieDetailType = value; }
         }
-        private int _movieDetailNote;
 
-        public int MovieDetailNote
+        public string MovieDetailNote
         {
             get { return _movieDetailNote; }
             set { _movieDetailNote = value; }
@@ -597,6 +601,7 @@ namespace MovieNet.ViewModels
         void MovieSearchExecute()
         {
             MovieDataModelContainer ctx = new MovieDataModelContainer();
+
             Movies = ctx.MovieSet.Where(m => m.Title.Contains(MovieTitleSearch)).ToList();
         }
         bool MovieSearchCanExecute()
@@ -626,11 +631,13 @@ namespace MovieNet.ViewModels
                 NoteAvg = NoteAvg / NoteCount;
             }
 
-            MovieDetailNote = NoteAvg;
+            if (NoteAvg == 0)
+                MovieDetailNote = "Aucune note pour ce film";
+            else
+                MovieDetailNote = NoteAvg.ToString();
 
-            // Comments = ListMovie.Comment; Changer le type en MovieNet.Comment dans le public
-
-            // TODO Get les nom d'utilisateur et genre
+            MovieDataModelContainer ctx = new MovieDataModelContainer();
+            Comments = ctx.CommentSet.Where(c => c.Movie.Id.Equals(ListMovie.Id)).ToList();
         }
     }
 }

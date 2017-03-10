@@ -13,7 +13,7 @@
         <Label Content="{Binding MovieDetailTitle}" HorizontalAlignment="Left" Margin="339,129,0,0" VerticalAlignment="Top"/>
 
         <Label Content="Description :" HorizontalAlignment="Left" Margin="244,155,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding MovieDetailDescription}" HorizontalAlignment="Left" Margin="319,155,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding MovieDetailDescription}" HorizontalAlignment="Left" Margin="339,155,0,0" VerticalAlignment="Top"/>
 
         <Label Content="Genre :" HorizontalAlignment="Left" Margin="244,181,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding MovieDetailType}" HorizontalAlignment="Left" Margin="339,181,0,0" VerticalAlignment="Top"/>
@@ -21,17 +21,17 @@
         <Label Content="Ajouté par :" HorizontalAlignment="Left" Margin="244,207,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding MovieDetailUser}" HorizontalAlignment="Left" Margin="339,207,0,0" VerticalAlignment="Top"/>
 
-        <Label Content="Note moyenne :" HorizontalAlignment="Left" Margin="244,238,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding MovieDetailNote}" HorizontalAlignment="Left" Margin="339,238,0,0" VerticalAlignment="Top"/>
+        <Label Content="Note moyenne :" HorizontalAlignment="Left" Margin="244,233,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding MovieDetailNote}" HorizontalAlignment="Left" Margin="339,233,0,0" VerticalAlignment="Top"/>
 
         <DataGrid x:Name="ListMovie" ItemsSource="{Binding Comments}" SelectedItem="{Binding SelectedItem}"
                   SelectionMode="Single" SelectionUnit="FullRow" GridLinesVisibility="None"
                   HorizontalAlignment="Left" Height="78" Margin="244,269,0,0" VerticalAlignment="Top"
                   AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" Width="430">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="TitleColumn" Binding="{Binding Title}" 
+                <DataGridTextColumn x:Name="TitleColumn" Binding="{Binding User.Login}" 
                                     Header="Login" Width="Auto"/>
-                <DataGridTextColumn x:Name="typeColumn" Binding="{Binding Type.Value}" 
+                <DataGridTextColumn x:Name="typeColumn" Binding="{Binding Description}" 
                                     Header="Description" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
