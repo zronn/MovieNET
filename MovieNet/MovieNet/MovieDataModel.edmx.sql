@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/05/2017 02:09:58
--- Generated from EDMX file: C:\Users\Badredine\Source\Repos\MovieNET\MovieNet\MovieNet\MovieDataModel.edmx
+-- Date Created: 03/10/2017 12:45:44
+-- Generated from EDMX file: C:\Users\Zouzma\Source\Repos\MovieNET\MovieNet\MovieNet\MovieDataModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -81,7 +81,7 @@ GO
 -- Creating table 'NoteSet'
 CREATE TABLE [dbo].[NoteSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Value] nvarchar(max)  NOT NULL,
+    [Value] int  NOT NULL,
     [Movie_Id] int  NOT NULL,
     [User_Id] int  NOT NULL
 );
@@ -89,7 +89,8 @@ GO
 
 -- Creating table 'TypeSet'
 CREATE TABLE [dbo].[TypeSet] (
-    [Id] int IDENTITY(1,1) NOT NULL
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Value] nvarchar(max)  NOT NULL
 );
 GO
 

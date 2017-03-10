@@ -249,7 +249,6 @@ namespace MovieNet.ViewModels
         }
 
 
-
         public List<Movie> Movies
         {
             get { return _movies; }
@@ -552,11 +551,9 @@ namespace MovieNet.ViewModels
             SubSwitchView = 3;
             MovieDetailTitle = ListMovie.Title;
             MovieDetailDescription = ListMovie.Description;
+            MovieDetailType = ListMovie.Type.Value;
+            MovieDetailUser = ListMovie.User.Login;
 
-            var test = ListMovie.Type;
-
-            MovieDataModelContainer ctx = new MovieDataModelContainer();
-            var TypeDetail = ctx.TypeSet.Where(t => t.Id.Equals(ListMovie.Type));
             // TODO Get les nom d'utilisateur et genre
         }
     }

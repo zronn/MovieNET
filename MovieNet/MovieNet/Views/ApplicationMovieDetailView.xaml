@@ -12,8 +12,14 @@
         <Label Content="Intitulé :" HorizontalAlignment="Left" Margin="244,159,0,0" VerticalAlignment="Top"/>
         <Label Content="{Binding MovieDetailTitle}" HorizontalAlignment="Left" Margin="319,159,0,0" VerticalAlignment="Top"/>
 
-        <Label Content="Description :" HorizontalAlignment="Left" Margin="244,190,0,0" VerticalAlignment="Top"/>
-        <Label Content="{Binding MovieDetailDescription}" HorizontalAlignment="Left" Margin="319,190,0,0" VerticalAlignment="Top"/>
+        <Label Content="Description :" HorizontalAlignment="Left" Margin="244,185,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding MovieDetailDescription}" HorizontalAlignment="Left" Margin="319,185,0,0" VerticalAlignment="Top"/>
+
+        <Label Content="Genre :" HorizontalAlignment="Left" Margin="244,211,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding MovieDetailType}" HorizontalAlignment="Left" Margin="319,211,0,0" VerticalAlignment="Top"/>
+
+        <Label Content="Ajouté par :" HorizontalAlignment="Left" Margin="244,237,0,0" VerticalAlignment="Top"/>
+        <Label Content="{Binding MovieDetailUser}" HorizontalAlignment="Left" Margin="319,237,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </UserControl>
