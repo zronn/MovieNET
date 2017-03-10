@@ -77,6 +77,7 @@ namespace MovieNet.ViewModels
 
         private List<Movie> _movies;
         private List<Type> _types;
+        private List<Comment> _comments;
 
         public int SwitchView
         {
@@ -247,6 +248,14 @@ namespace MovieNet.ViewModels
             get { return _movieDetailType; }
             set { _movieDetailType = value; }
         }
+        private int _movieDetailNote;
+
+        public int MovieDetailNote
+        {
+            get { return _movieDetailNote; }
+            set { _movieDetailNote = value; }
+        }
+    
 
 
         public List<Movie> Movies
@@ -262,6 +271,12 @@ namespace MovieNet.ViewModels
         {
             get { return _types; }
             set { _types = value; }
+        }
+
+        public List<Comment> Comments
+        {
+            get { return _comments; }
+            set { _comments = value;  }
         }
 
         public RelayCommand Signin { get; }
@@ -568,9 +583,9 @@ namespace MovieNet.ViewModels
                 NoteAvg = NoteAvg / NoteCount;
             }
 
-            Console.WriteLine(NoteAvg);
+            MovieDetailNote = NoteAvg;
 
-            var test = 2;
+            // Comments = ListMovie.Comment; Changer le type en MovieNet.Comment dans le public
 
             // TODO Get les nom d'utilisateur et genre
         }

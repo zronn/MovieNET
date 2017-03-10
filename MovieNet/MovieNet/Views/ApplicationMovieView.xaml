@@ -27,15 +27,15 @@
                                     Header="Id" Width="Auto"/>
                 <DataGridTextColumn x:Name="TitleColumn" Binding="{Binding Title}" 
                                     Header="Title" Width="Auto"/>
-                <DataGridTextColumn x:Name="typeColumn" Binding="{Binding Type.Id}" 
+                <DataGridTextColumn x:Name="typeColumn" Binding="{Binding Type.Value}" 
                                     Header="Type" Width="Auto"/>
                 <DataGridTextColumn x:Name="DescriptioneColumn" Binding="{Binding Description}" 
                                     Header="Description" Width="Auto"/>
-                <DataGridTextColumn x:Name="UserColumn" Binding="{Binding User.Id}" 
+                <DataGridTextColumn x:Name="UserColumn" Binding="{Binding User.Login}" 
                                     Header="User" Width="Auto"/>
-                <DataGridTextColumn x:Name="NoteColumn" Binding="{Binding Note}"
+                <DataGridTextColumn x:Name="NoteColumn" Binding="{Binding Note.Count}"
                                     Header="Note" Width="Auto"/>
-                <DataGridTextColumn x:Name="CommentColumn" Binding="{Binding Comment}" 
+                <DataGridTextColumn x:Name="CommentColumn" Binding="{Binding Comment.Count}" 
                                     Header="Comment" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
