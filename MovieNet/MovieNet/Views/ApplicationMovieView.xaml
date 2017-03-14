@@ -14,14 +14,8 @@
 
         <DataGrid x:Name="ListMovie" ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedItem}"
                   SelectionMode="Single" SelectionUnit="FullRow" GridLinesVisibility="None"
-                  HorizontalAlignment="Left" Height="227" Margin="158,118,0,0" VerticalAlignment="Top"
-                  AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" Width="509">
-            <DataGrid.InputBindings>
-                <MouseBinding 
-                    MouseAction="LeftClick"
-                    Command="{Binding ToMovieDetail}"
-                    CommandParameter="{Binding ElementName=ListMovie, Path=SelectedItem}" />
-            </DataGrid.InputBindings>
+                  HorizontalAlignment="Left" Height="227" Margin="119,118,0,0" VerticalAlignment="Top"
+                  AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" Width="750">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="IdColumn" Binding="{Binding Id}" 
                                     Header="Id" Width="Auto"/>
@@ -37,8 +31,29 @@
                                     Header="Nombre de note" Width="Auto"/>
                 <DataGridTextColumn x:Name="CommentColumn" Binding="{Binding Comment.Count}" 
                                     Header="Comment" Width="Auto"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Detail"
+                            Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
+                                              Path=DataContext.ToMovieDetail}"
+                            CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Supprimer"
+                            Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
+                                              Path=DataContext.ToMovieDelete}"
+                            CommandParameter="{Binding}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
-
+        <Label x:Name="DeleteStatusName" Content="{Binding DeleteStatusName}" Foreground="Red" HorizontalAlignment="Left" Height="28" Margin="176,101,0,0" VerticalAlignment="Top" Width="445"/>
     </Grid>
 </UserControl>
