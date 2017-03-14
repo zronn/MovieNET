@@ -47,6 +47,7 @@ namespace MovieNet.ViewModels
             ToValidAddMovie = new RelayCommand(ToValidAddMovieExecute, ToValidAddMovieCanExecute);
             ToMovie = new RelayCommand(ToMovieExecute, ToMovieCanExecute);
             ToMovieDetail = new RelayCommand<MovieNet.Movie>((s) => ToMovieDetailExecute(s));
+            ToMovieDelete = new RelayCommand<MovieNet.Movie>((s) => ToMovieDeleteExecute(s));
             ToDisconnect = new RelayCommand(ToDisconnectExecute, ToDisconnectCanExecute);
         }
 
@@ -81,6 +82,9 @@ namespace MovieNet.ViewModels
 
         private string _movieDetailTitle;
         private string _movieDetailDescription;
+
+        private string _deleteStatusName;
+        
 
         private List<Movie> _movies;
         private List<Type> _types;
@@ -274,7 +278,17 @@ namespace MovieNet.ViewModels
             get { return _movieDetailNote; }
             set { _movieDetailNote = value; }
         }
+
     
+        public string DeleteStatusName
+        {
+            get { return _deleteStatusName; }
+            set
+            {
+                _deleteStatusName = value; 
+                RaisePropertyChanged();
+            }
+        }
 
 
         public List<Movie> Movies
@@ -314,6 +328,9 @@ namespace MovieNet.ViewModels
         public RelayCommand ProfilEdit { get; }
         public RelayCommand MovieSearch { get; }
         public RelayCommand<MovieNet.Movie> ToMovieDetail { get; private set; }
+        public RelayCommand<MovieNet.Movie> ToMovieDelete { get; private set; }
+
+
 
         /*
          * Méthode pour la connexion
@@ -631,6 +648,28 @@ namespace MovieNet.ViewModels
             // Comments = ListMovie.Comment; Changer le type en MovieNet.Comment dans le public
 
             // TODO Get les nom d'utilisateur et genre
+        }
+
+        private void ToMovieDeleteExecute(MovieNet.Movie ListMovie)
+        {
+            MovieDataModelContainer ctx = new MovieDataModelContainer();
+
+            if (ListMovie.User.Id != UserIdConnected)
+            {
+                DeleteStatusName = "Vous n'avez le droit de supprimer ce film";
+            }
+            else
+            {
+                Movie film = ctx.MovieSet.Find(ListMovie.Id);
+
+                ctx.MovieSet.Remove(film);
+                ctx.SaveChanges();
+
+                DeleteStatusName = "";
+
+                Movies = ctx.MovieSet.ToList();
+                SubSwitchView = 0;
+            }
         }
     }
 }
