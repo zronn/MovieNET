@@ -12,7 +12,7 @@
         <TextBox x:Name="MovieTitleSearch" Text="{Binding MovieTitleSearch}" HorizontalAlignment="Left" Height="23" Margin="426,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="MovieSearch" Content="Rechercher" Command="{Binding MovieSearch}" HorizontalAlignment="Left" Margin="592,83,0,0" VerticalAlignment="Top" Width="75" Height="23"/>
 
-        <Label x:Name="DeleteStatusName" Content="{Binding DeleteStatusName}" Foreground="Red" HorizontalAlignment="Left" Height="28" Margin="147,106,0,0" VerticalAlignment="Top" Width="445"/>
+        <Label x:Name="DeleteStatusName" Content="{Binding DeleteStatusName}" Foreground="{Binding StatusColor}" HorizontalAlignment="Left" Height="28" Margin="147,106,0,0" VerticalAlignment="Top" Width="445"/>
 
         <DataGrid x:Name="ListMovie" ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedItem}"
                   SelectionMode="Single" SelectionUnit="FullRow" GridLinesVisibility="None"

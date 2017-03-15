@@ -17,6 +17,17 @@
         <Label Content="Commentaire :" HorizontalAlignment="Left" Margin="244,169,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="Description" Text="{Binding MovieCommentMsg}" HorizontalAlignment="Left" Height="44" Margin="339,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
 
+        <Label Content="Note :" HorizontalAlignment="Left" Margin="244,233,0,0" VerticalAlignment="Top"/>
+        
+        <ComboBox Text="{Binding MovieCommentNote}"
+                  HorizontalAlignment="Left" Margin="339,239,0,0" VerticalAlignment="Top" Width="80" Height="20">
+            <ComboBoxItem Name="note1">1</ComboBoxItem>
+            <ComboBoxItem Name="note2">2</ComboBoxItem>
+            <ComboBoxItem Name="note3">3</ComboBoxItem>
+            <ComboBoxItem Name="note4">4</ComboBoxItem>
+            <ComboBoxItem Name="note5">5</ComboBoxItem>
+        </ComboBox>
+
         <Button x:Name="ButtonValidMovieComment" Command="{Binding MovieComment}" Content="Ajouter" HorizontalAlignment="Left" Margin="541,319,0,0" VerticalAlignment="Top" Width="72"/>
 
     </Grid>

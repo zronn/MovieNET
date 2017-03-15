@@ -76,6 +76,7 @@ namespace MovieNet.ViewModels
         private string _passwordEditConfirm;
 
         private string _movieCommentMsg;
+        private int _movieCommentNote;
         private string _movieCommentStatusName;
         private int _movieDetailId;
 
@@ -249,6 +250,11 @@ namespace MovieNet.ViewModels
             get { return _movieCommentMsg; }
             set { _movieCommentMsg = value; }
         }
+        public int MovieCommentNote
+        {
+            get { return _movieCommentNote; }
+            set { _movieCommentNote = value; }
+        }
 
         public string MovieCommentStatusName
         {
@@ -409,6 +415,7 @@ namespace MovieNet.ViewModels
         void ToSigninExecute()
         {
             SwitchView = 0;
+            clearStatus();
         }
         bool ToSigninCanExecute()
         {
@@ -470,6 +477,7 @@ namespace MovieNet.ViewModels
         void ToSignupExecute()
         {
             SwitchView = 1;
+            clearStatus();
         }
         bool ToSignupCanExecute()
         {
@@ -482,6 +490,7 @@ namespace MovieNet.ViewModels
         void ToAddMovieExecute()
         {
             SubSwitchView = 1;
+            clearStatus();
         }
         bool ToAddMovieCanExecute()
         {
@@ -507,6 +516,8 @@ namespace MovieNet.ViewModels
             Movies = ctx.MovieSet.ToList();
 
             SubSwitchView = 0;
+            StatusColor = "Green";
+            DeleteStatusName = "Film correctement ajouté !";
 
         }
         bool ToValidAddMovieCanExecute()
@@ -539,6 +550,7 @@ namespace MovieNet.ViewModels
         void ToProfilExecute()
         {
             SubSwitchView = 2;
+            clearStatus();
         }
         bool ToProfilCanExecute()
         {
@@ -551,6 +563,7 @@ namespace MovieNet.ViewModels
         void ToMovieExecute()
         {
             SubSwitchView = 0;
+            clearStatus();
         }
         bool ToMovieCanExecute()
         {
@@ -641,14 +654,36 @@ namespace MovieNet.ViewModels
             if (!String.IsNullOrEmpty(MovieCommentMsg))
             {
                 MovieDataModelContainer ctx = new MovieDataModelContainer();
+                User user = ctx.UserSet.Find(UserIdConnected);
+                Movie movie = ctx.MovieSet.Find(MovieDetailId);
 
-                var comment = ctx.CommentSet.Single(c => c.Movie.Id == MovieDetailId); // Pluesieurs comment
+                Comment comment = new Comment();
+
                 comment.Description = MovieCommentMsg;
-                comment.User.Id = UserIdConnected;
+                comment.User = user;
+                comment.Movie = movie;
+
+
+                Note note = new Note();
+
+                note.Value = MovieCommentNote;
+                note.User = user;
+                note.Movie = movie;
+
+                ctx.CommentSet.Add(comment);
+                ctx.NoteSet.Add(note);
+
                 ctx.SaveChanges();
+
+                Movies = ctx.MovieSet.ToList();
+
+                SubSwitchView = 0;
+                StatusColor = "Green";
+                DeleteStatusName = "Commentaire correctement ajouté !";
             }
             else
             {
+                StatusColor = "Red";
                 MovieCommentStatusName = "Veuillez ajouter un commentaire";
             }
         }
@@ -723,6 +758,7 @@ namespace MovieNet.ViewModels
 
             if (ListMovie.User.Id != UserIdConnected)
             {
+                StatusColor = "Red";
                 DeleteStatusName = "Vous n'avez le droit de supprimer ce film";
             }
             else
@@ -744,6 +780,18 @@ namespace MovieNet.ViewModels
             SubSwitchView = 5;
             MovieDetailTitle = ListMovie.Title;
             MovieDetailId = ListMovie.Id;
+        }
+
+        /**
+         * Méthode permettant de nettoyer les status
+         */
+        void clearStatus()
+        {
+            DeleteStatusName = "";
+            InscriptionStatusName = "";
+            ConnectStatusName = "";
+            AddMovieStatusName = "";
+            ProfilEditStatusName = "";
         }
     }
 }
