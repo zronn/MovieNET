@@ -14,9 +14,6 @@ namespace MovieNet.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        /*
-         * Contructeur
-         */
         public MainViewModel()
         {
             SwitchView = 0;
@@ -26,7 +23,7 @@ namespace MovieNet.ViewModels
             ConnectStatusName = "";
             InscriptionStatusName = "";
             ProfilEditStatusName = "";
-            MovieCommentStatusName = "";
+            MovieEditStatusName = "";
             AddMovieStatusName = "";
 
             UserIdConnected = 0;
@@ -42,7 +39,6 @@ namespace MovieNet.ViewModels
 
             ProfilEdit = new RelayCommand(ProfilEditExecute, ProfilEditCanExecute);
             MovieSearch = new RelayCommand(MovieSearchExecute, MovieSearchCanExecute);
-            MovieComment = new RelayCommand(MovieCommentExecute, MovieCommentCanExecute);
 
             ToSignin = new RelayCommand(ToSigninExecute, ToSigninCanExecute);
             ToSignup = new RelayCommand(ToSignupExecute, ToSignupCanExecute);
@@ -52,69 +48,64 @@ namespace MovieNet.ViewModels
             ToValidAddMovie = new RelayCommand(ToValidAddMovieExecute, ToValidAddMovieCanExecute);
             ToMovie = new RelayCommand(ToMovieExecute, ToMovieCanExecute);
             ToMovieDetail = new RelayCommand<MovieNet.Movie>((s) => ToMovieDetailExecute(s));
+            ToMovieEdit = new RelayCommand<MovieNet.Movie>((s) => ToMovieEditExecute(s));
             ToMovieDelete = new RelayCommand<MovieNet.Movie>((s) => ToMovieDeleteExecute(s));
-            ToMovieComment = new RelayCommand<MovieNet.Movie>((s) => ToMovieCommentExecute(s));
             ToDisconnect = new RelayCommand(ToDisconnectExecute, ToDisconnectCanExecute);
+
+            MovieEdit = new RelayCommand(MovieEditExecute, MovieEditCanExecute);
         }
 
-        // Gestion des vues
         private int _switchView;
         private int _subSwitchView;
 
-        // Status (messages de succés / erreur)
         private string _statusColor;
         private string _connectStatusName;
         private string _inscriptionStatusName;
         private string _profilEditStatusName;
-        private string _movieCommentStatusName;
-        private string _addMovieStatusName;
-        private string _deleteStatusName;
+        private string _movieEditStatusName;
 
-        // Données rattachées à l'user connecté
         private int _userIdConnected;
         private string _userNameConnected;
 
-        // Connection
         private string _loginIn;
         private string _passwordIn;
 
-        // Inscription
         private string _loginUp;
         private string _passwordUp;
 
-        // Edition du profil
         private string _loginEdit;
         private string _passwordEdit;
         private string _passwordEditConfirm;
 
-        // Ajout d'un commentaire / note
-        private string _movieCommentMsg;
-        private int _movieCommentNote;
-        private int _movieDetailId;
-
-        // Ajout d'un film
         private string _titleAdd;
         private string _descriptionAdd;
         private int _type;
 
-        // Recherche d'un film
+        private string _addMovieStatusName;
+
         private string _movieTitleSearch;
 
-        // Détail d'un film
         private string _movieDetailTitle;
         private string _movieDetailDescription;
         private string _movieDetailUser;
         private string _movieDetailType;
         private string _movieDetailNote;
 
-        // Listes pour Movie, Type et Comment
+        private string _movieEditTitle;
+        private string _movieEditDescription;
+        private string _movieEditUser;
+        private int _movieEditIdMovie;
+        private string _movieEditNote;
+
+        private string _movieEditStatusColor;
+
+        private string _deleteStatusName;
+        
+
         private List<Movie> _movies;
         private List<Type> _types;
         private List<Comment> _comments;
 
-        /* --------------------------------------- */
-
-        // Gestion des vues
         public int SwitchView
         {
             get { return _switchView; }
@@ -134,7 +125,6 @@ namespace MovieNet.ViewModels
             }
         }
 
-        // Status (messages de succés / erreur)
         public string StatusColor
         {
             get { return _statusColor; }
@@ -171,41 +161,30 @@ namespace MovieNet.ViewModels
                 RaisePropertyChanged();
             }
         }
-        public string AddMovieStatusName
+        public string MovieEditStatusName
         {
-            get { return _addMovieStatusName; }
+            get { return _movieEditStatusName; }
             set
             {
-                _addMovieStatusName = value;
+                _movieEditStatusName = value;
                 RaisePropertyChanged();
             }
         }
-        public string MovieCommentStatusName
-        {
-            get { return _movieCommentStatusName; }
-            set
-            {
-                _movieCommentStatusName = value;
-                RaisePropertyChanged();
-            }
-        }
-        public string DeleteStatusName
-        {
-            get { return _deleteStatusName; }
-            set
-            {
-                _deleteStatusName = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        // Données rattachées à l'user connecté
         public int UserIdConnected
         {
             get { return _userIdConnected; }
             set
             {
                 _userIdConnected = value;
+                RaisePropertyChanged();
+            }
+        }
+        public string AddMovieStatusName
+        {
+            get { return _addMovieStatusName; }
+            set
+            {
+                _addMovieStatusName = value;
                 RaisePropertyChanged();
             }
         }
@@ -219,7 +198,29 @@ namespace MovieNet.ViewModels
             }
         }
 
-        // Connection
+        public string TitleAdd
+        {
+            get { return _titleAdd; }
+            set { _titleAdd = value; }
+        }
+
+        public string DescriptionAdd
+        {
+            get { return _descriptionAdd; }
+            set { _descriptionAdd = value; }
+        }
+
+        public int Type
+        {
+            get { return _type; }
+            set
+            {
+                _type = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
         public string LoginIn
         {
             get { return _loginIn; }
@@ -231,7 +232,6 @@ namespace MovieNet.ViewModels
             set { _passwordIn = value; }
         }
 
-        // Inscription
         public string LoginUp
         {
             get { return _loginUp; }
@@ -243,7 +243,6 @@ namespace MovieNet.ViewModels
             set { _passwordUp = value; }
         }
 
-        // Edition du profil
         public string LoginEdit
         {
             get { return _loginEdit; }
@@ -259,41 +258,6 @@ namespace MovieNet.ViewModels
             get { return _passwordEditConfirm; }
             set { _passwordEditConfirm = value; }
         }
-
-        // Ajout de commentaires / notes
-        public string MovieCommentMsg
-        {
-            get { return _movieCommentMsg; }
-            set { _movieCommentMsg = value; }
-        }
-        public int MovieCommentNote
-        {
-            get { return _movieCommentNote; }
-            set { _movieCommentNote = value; }
-        }
-
-        // Ajout d'un film
-        public string TitleAdd
-        {
-            get { return _titleAdd; }
-            set { _titleAdd = value; }
-        }
-        public string DescriptionAdd
-        {
-            get { return _descriptionAdd; }
-            set { _descriptionAdd = value; }
-        }
-        public int Type
-        {
-            get { return _type; }
-            set
-            {
-                _type = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        // Recherche d'un film
         public string MovieTitleSearch
         {
             get { return _movieTitleSearch; }
@@ -304,16 +268,6 @@ namespace MovieNet.ViewModels
             }
         }
 
-        // Détail d'un film
-        public int MovieDetailId
-        {
-            get { return _movieDetailId; }
-            set
-            {
-                _movieDetailId = value;
-                RaisePropertyChanged();
-            }
-        }
         public string MovieDetailTitle
         {
             get { return _movieDetailTitle; }
@@ -332,23 +286,85 @@ namespace MovieNet.ViewModels
                 RaisePropertyChanged();
             }
         }
+
         public string MovieDetailUser
         {
             get { return _movieDetailUser; }
             set { _movieDetailUser = value; }
         }
+
         public string MovieDetailType
         {
             get { return _movieDetailType; }
             set { _movieDetailType = value; }
         }
+
         public string MovieDetailNote
         {
             get { return _movieDetailNote; }
             set { _movieDetailNote = value; }
         }
 
-        // Listes pour Movie, Type et Comment
+        public string MovieEditTitle
+        {
+            get { return _movieEditTitle; }
+            set { _movieEditTitle = value; }
+        }
+        public string MovieEditDescription
+        {
+            get { return _movieEditDescription; }
+            set { _movieEditDescription = value; }
+        }
+        public string MovieEditUser
+        {
+            get { return _movieEditUser; }
+            set
+            {
+                _movieEditUser = value;
+                RaisePropertyChanged();
+            }
+        }
+        public int MovieEditIdMovie
+        {
+            get { return _movieEditIdMovie; }
+            set
+            {
+                _movieEditIdMovie = value;
+                RaisePropertyChanged();
+            }
+        }
+        public string MovieEditNote
+        {
+            get { return _movieEditNote;}
+            set
+            {
+                _movieEditNote = value;
+                RaisePropertyChanged();
+            }
+        }
+        public string MovieEditStatusColor
+        {
+            get { return _movieEditStatusColor; }
+            set
+            {
+                _movieEditStatusColor = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
+
+        public string DeleteStatusName
+        {
+            get { return _deleteStatusName; }
+            set
+            {
+                _deleteStatusName = value; 
+                RaisePropertyChanged();
+            }
+        }
+
+
         public List<Movie> Movies
         {
             get { return _movies; }
@@ -367,6 +383,7 @@ namespace MovieNet.ViewModels
                 RaisePropertyChanged();
             }
         }
+
         public List<Comment> Comments
         {
             get { return _comments; }
@@ -384,10 +401,11 @@ namespace MovieNet.ViewModels
         public RelayCommand ToDisconnect { get; }
         public RelayCommand ProfilEdit { get; }
         public RelayCommand MovieSearch { get; }
-        public RelayCommand MovieComment { get; }
         public RelayCommand<MovieNet.Movie> ToMovieDetail { get; private set; }
+        public RelayCommand<MovieNet.Movie> ToMovieEdit { get; private set; }
         public RelayCommand<MovieNet.Movie> ToMovieDelete { get; private set; }
-        public RelayCommand<MovieNet.Movie> ToMovieComment { get; private set; }
+
+        public RelayCommand MovieEdit { get; }
 
         /*
          * Méthode pour la connexion
@@ -425,7 +443,6 @@ namespace MovieNet.ViewModels
         void ToSigninExecute()
         {
             SwitchView = 0;
-            clearStatus();
         }
         bool ToSigninCanExecute()
         {
@@ -487,7 +504,6 @@ namespace MovieNet.ViewModels
         void ToSignupExecute()
         {
             SwitchView = 1;
-            clearStatus();
         }
         bool ToSignupCanExecute()
         {
@@ -500,7 +516,6 @@ namespace MovieNet.ViewModels
         void ToAddMovieExecute()
         {
             SubSwitchView = 1;
-            clearStatus();
         }
         bool ToAddMovieCanExecute()
         {
@@ -526,8 +541,6 @@ namespace MovieNet.ViewModels
             Movies = ctx.MovieSet.ToList();
 
             SubSwitchView = 0;
-            StatusColor = "Green";
-            DeleteStatusName = "Film correctement ajouté !";
 
         }
         bool ToValidAddMovieCanExecute()
@@ -560,7 +573,6 @@ namespace MovieNet.ViewModels
         void ToProfilExecute()
         {
             SubSwitchView = 2;
-            clearStatus();
         }
         bool ToProfilCanExecute()
         {
@@ -573,7 +585,6 @@ namespace MovieNet.ViewModels
         void ToMovieExecute()
         {
             SubSwitchView = 0;
-            clearStatus();
         }
         bool ToMovieCanExecute()
         {
@@ -657,51 +668,6 @@ namespace MovieNet.ViewModels
         }
 
         /*
-         * Méthode pour commenter un film
-         */
-        void MovieCommentExecute()
-        {
-            if (!String.IsNullOrEmpty(MovieCommentMsg))
-            {
-                MovieDataModelContainer ctx = new MovieDataModelContainer();
-                User user = ctx.UserSet.Find(UserIdConnected);
-                Movie movie = ctx.MovieSet.Find(MovieDetailId);
-
-                Comment comment = new Comment();
-
-                comment.Description = MovieCommentMsg;
-                comment.User = user;
-                comment.Movie = movie;
-
-
-                Note note = new Note();
-
-                note.Value = MovieCommentNote;
-                note.User = user;
-                note.Movie = movie;
-
-                ctx.CommentSet.Add(comment);
-                ctx.NoteSet.Add(note);
-
-                ctx.SaveChanges();
-
-                Movies = ctx.MovieSet.ToList();
-
-                SubSwitchView = 0;
-                StatusColor = "Green";
-                DeleteStatusName = "Commentaire correctement ajouté !";
-            }
-            else
-            {
-                StatusColor = "Red";
-                MovieCommentStatusName = "Veuillez ajouter un commentaire";
-            }
-        }
-        bool MovieCommentCanExecute()
-        {
-            return true;
-        }
-        /*
          * Méthode pour se déconnecter
          */
         void ToDisconnectExecute()
@@ -731,8 +697,9 @@ namespace MovieNet.ViewModels
             return true;
         }
 
-        /*
-         * Méthode pour visualiser le détail d'un film
+
+        /**
+         * Methode pour Afficher le detail d'un film
          */
         private void ToMovieDetailExecute(MovieNet.Movie ListMovie)
         {
@@ -765,20 +732,95 @@ namespace MovieNet.ViewModels
             Comments = ctx.CommentSet.Where(c => c.Movie.Id.Equals(ListMovie.Id)).ToList();
         }
 
-        /*
-         * Méthode pour supprimer un film
-         */ 
-        private void ToMovieDeleteExecute(MovieNet.Movie ListMovie)
+        /**
+         *  Methode pour editer un movie si user est le proprietaire
+         */
+        private void ToMovieEditExecute(MovieNet.Movie ListMovie)
         {
-            MovieDataModelContainer ctx = new MovieDataModelContainer();
-
             if (ListMovie.User.Id != UserIdConnected)
             {
-                StatusColor = "Red";
+                DeleteStatusName = "Vous n'avez le droit d'editer ce film";
+            }
+            else
+            {
+                MovieEditIdMovie = 0;
+
+                SubSwitchView = 4;
+
+                MovieDataModelContainer ctx = new MovieDataModelContainer();
+
+                Movie film = ctx.MovieSet.Find(ListMovie.Id);
+
+                MovieEditStatusName = "Edition du film : " + ListMovie.Title;
+
+                MovieEditUser = "Ajouter par : " + ListMovie.User.Login;
+
+                MovieEditNote = "La note pour ce film est de " + ListMovie.Note.Count.ToString();
+
+                MovieEditTitle = ListMovie.Title;
+                MovieEditDescription = ListMovie.Description;
+                MovieEditIdMovie = film.Id;
+
+            }
+
+        }
+
+        void MovieEditExecute()
+        {
+
+            MovieDataModelContainer ctx = new MovieDataModelContainer();
+
+            var film = ctx.MovieSet.Single(x => x.Id == MovieEditIdMovie);
+            film.Title = MovieEditTitle;
+            film.Description = MovieEditDescription;
+            film.Type = ctx.TypeSet.Find(Type);
+            ctx.SaveChanges();
+
+            Movies = ctx.MovieSet.ToList();
+
+            StatusColor = "Green";
+            DeleteStatusName = "Votre Film a bien ete modifie";
+            SubSwitchView = 0;
+
+        }
+        bool MovieEditCanExecute()
+        {
+            if (String.IsNullOrEmpty(MovieEditTitle))
+            {
+                MovieEditStatusName = "Veuillez ajouter un titre";
+                MovieEditStatusColor = "Red";
+                return false;
+            }
+            else if (String.IsNullOrEmpty(MovieEditDescription))
+            {
+                MovieEditStatusName = "Veuillez ajouter une description";
+                MovieEditStatusColor = "Red";
+                return false;
+
+            }
+            else if (Type == default(int))
+            {
+                MovieEditStatusName = "Veuillez choisir une catégorie de film";
+                MovieEditStatusColor = "Red";
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+
+        private void ToMovieDeleteExecute(MovieNet.Movie ListMovie)
+        {
+            if (ListMovie.User.Id != UserIdConnected)
+            {
                 DeleteStatusName = "Vous n'avez le droit de supprimer ce film";
             }
             else
             {
+                MovieDataModelContainer ctx = new MovieDataModelContainer();
+
                 Movie film = ctx.MovieSet.Find(ListMovie.Id);
 
                 ctx.MovieSet.Remove(film);
@@ -789,28 +831,6 @@ namespace MovieNet.ViewModels
                 Movies = ctx.MovieSet.ToList();
                 SubSwitchView = 0;
             }
-        }
-
-        /*
-         * Méthode pour accéder à la page d'ajout d'un commentaire / note
-         */ 
-        private void ToMovieCommentExecute(MovieNet.Movie ListMovie)
-        {
-            SubSwitchView = 5;
-            MovieDetailTitle = ListMovie.Title;
-            MovieDetailId = ListMovie.Id;
-        }
-
-        /**
-         * Méthode permettant de nettoyer les status
-         */
-        void clearStatus()
-        {
-            DeleteStatusName = "";
-            InscriptionStatusName = "";
-            ConnectStatusName = "";
-            AddMovieStatusName = "";
-            ProfilEditStatusName = "";
         }
     }
 }

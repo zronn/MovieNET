@@ -17,16 +17,16 @@
             <local:ApplicationAddMovieView />
         </DataTemplate>
 
+        <DataTemplate x:Key="ApplicationEditMovieView" DataType="{x:Type viewmodels:MainViewModel}">
+            <local:ApplicationEditMovieView />
+        </DataTemplate>
+
         <DataTemplate x:Key="ApplicationProfilView" DataType="{x:Type viewmodels:MainViewModel}">
             <local:ApplicationProfilView />
         </DataTemplate>
 
         <DataTemplate x:Key="ApplicationMovieDetailView" DataType="{x:Type viewmodels:MainViewModel}">
             <local:ApplicationMovieDetailView />
-        </DataTemplate>
-
-        <DataTemplate x:Key="ApplicationMovieCommentView" DataType="{x:Type viewmodels:MainViewModel}">
-            <local:ApplicationMovieCommentView />
         </DataTemplate>
     </UserControl.Resources>
 
@@ -57,8 +57,8 @@
                         <DataTrigger Binding="{Binding SubSwitchView}" Value="3">
                             <Setter Property="ContentTemplate" Value="{StaticResource ApplicationMovieDetailView}" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding SubSwitchView}" Value="5">
-                            <Setter Property="ContentTemplate" Value="{StaticResource ApplicationMovieCommentView}" />
+                        <DataTrigger Binding="{Binding SubSwitchView}" Value="4">
+                            <Setter Property="ContentTemplate" Value="{StaticResource ApplicationEditMovieView}" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
