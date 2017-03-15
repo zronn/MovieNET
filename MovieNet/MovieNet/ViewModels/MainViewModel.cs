@@ -23,6 +23,7 @@ namespace MovieNet.ViewModels
             ConnectStatusName = "";
             InscriptionStatusName = "";
             ProfilEditStatusName = "";
+            MovieCommentStatusName = "";
             AddMovieStatusName = "";
 
             UserIdConnected = 0;
@@ -38,6 +39,7 @@ namespace MovieNet.ViewModels
 
             ProfilEdit = new RelayCommand(ProfilEditExecute, ProfilEditCanExecute);
             MovieSearch = new RelayCommand(MovieSearchExecute, MovieSearchCanExecute);
+            MovieComment = new RelayCommand(MovieCommentExecute, MovieCommentCanExecute);
 
             ToSignin = new RelayCommand(ToSigninExecute, ToSigninCanExecute);
             ToSignup = new RelayCommand(ToSignupExecute, ToSignupCanExecute);
@@ -48,6 +50,7 @@ namespace MovieNet.ViewModels
             ToMovie = new RelayCommand(ToMovieExecute, ToMovieCanExecute);
             ToMovieDetail = new RelayCommand<MovieNet.Movie>((s) => ToMovieDetailExecute(s));
             ToMovieDelete = new RelayCommand<MovieNet.Movie>((s) => ToMovieDeleteExecute(s));
+            ToMovieComment = new RelayCommand<MovieNet.Movie>((s) => ToMovieCommentExecute(s));
             ToDisconnect = new RelayCommand(ToDisconnectExecute, ToDisconnectCanExecute);
         }
 
@@ -71,6 +74,10 @@ namespace MovieNet.ViewModels
         private string _loginEdit;
         private string _passwordEdit;
         private string _passwordEditConfirm;
+
+        private string _movieCommentMsg;
+        private string _movieCommentStatusName;
+        private int _movieDetailId;
 
         private string _titleAdd;
         private string _descriptionAdd;
@@ -236,6 +243,35 @@ namespace MovieNet.ViewModels
             get { return _passwordEditConfirm; }
             set { _passwordEditConfirm = value; }
         }
+
+        public string MovieCommentMsg
+        {
+            get { return _movieCommentMsg; }
+            set { _movieCommentMsg = value; }
+        }
+
+        public string MovieCommentStatusName
+        {
+            get { return _movieCommentStatusName; }
+            set
+            {
+                _movieCommentStatusName = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public int MovieDetailId
+        {
+            get { return _movieDetailId; }
+            set
+            {
+                _movieDetailId = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
+
         public string MovieTitleSearch
         {
             get { return _movieTitleSearch; }
@@ -331,9 +367,10 @@ namespace MovieNet.ViewModels
         public RelayCommand ToDisconnect { get; }
         public RelayCommand ProfilEdit { get; }
         public RelayCommand MovieSearch { get; }
+        public RelayCommand MovieComment { get; }
         public RelayCommand<MovieNet.Movie> ToMovieDetail { get; private set; }
         public RelayCommand<MovieNet.Movie> ToMovieDelete { get; private set; }
-
+        public RelayCommand<MovieNet.Movie> ToMovieComment { get; private set; }
 
 
         /*
@@ -597,6 +634,29 @@ namespace MovieNet.ViewModels
         }
 
         /*
+         * Méthode pour commenter un film
+         */
+        void MovieCommentExecute()
+        {
+            if (!String.IsNullOrEmpty(MovieCommentMsg))
+            {
+                MovieDataModelContainer ctx = new MovieDataModelContainer();
+
+                var comment = ctx.CommentSet.Single(c => c.Movie.Id == MovieDetailId); // Pluesieurs comment
+                comment.Description = MovieCommentMsg;
+                comment.User.Id = UserIdConnected;
+                ctx.SaveChanges();
+            }
+            else
+            {
+                MovieCommentStatusName = "Veuillez ajouter un commentaire";
+            }
+        }
+        bool MovieCommentCanExecute()
+        {
+            return true;
+        }
+        /*
          * Méthode pour se déconnecter
          */
         void ToDisconnectExecute()
@@ -677,6 +737,13 @@ namespace MovieNet.ViewModels
                 Movies = ctx.MovieSet.ToList();
                 SubSwitchView = 0;
             }
+        }
+
+        private void ToMovieCommentExecute(MovieNet.Movie ListMovie)
+        {
+            SubSwitchView = 5;
+            MovieDetailTitle = ListMovie.Title;
+            MovieDetailId = ListMovie.Id;
         }
     }
 }
