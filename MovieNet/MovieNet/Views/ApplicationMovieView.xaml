@@ -14,8 +14,8 @@
 
         <DataGrid x:Name="ListMovie" ItemsSource="{Binding Movies}" SelectedItem="{Binding SelectedItem}"
                   SelectionMode="Single" SelectionUnit="FullRow" GridLinesVisibility="None"
-                  HorizontalAlignment="Left" Height="227" Margin="119,118,0,0" VerticalAlignment="Top"
-                  AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" Width="750">
+                  HorizontalAlignment="Left" Height="227" Margin="153,118,0,0" VerticalAlignment="Top"
+                  AutoGenerateColumns="False" EnableRowVirtualization="True" IsReadOnly="True" Width="514">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="IdColumn" Binding="{Binding Id}" 
                                     Header="Id" Width="Auto"/>
