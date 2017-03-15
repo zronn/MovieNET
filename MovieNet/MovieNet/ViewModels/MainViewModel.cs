@@ -14,6 +14,9 @@ namespace MovieNet.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        /*
+         * Contructeur
+         */
         public MainViewModel()
         {
             SwitchView = 0;
