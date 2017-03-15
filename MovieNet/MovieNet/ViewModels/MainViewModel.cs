@@ -216,8 +216,6 @@ namespace MovieNet.ViewModels
             }
         }
 
-
-
         // Connection
         public string LoginIn
         {
@@ -730,6 +728,9 @@ namespace MovieNet.ViewModels
             return true;
         }
 
+        /*
+         * Méthode pour visualiser le détail d'un film
+         */
         private void ToMovieDetailExecute(MovieNet.Movie ListMovie)
         {
             SubSwitchView = 3;
@@ -761,6 +762,9 @@ namespace MovieNet.ViewModels
             Comments = ctx.CommentSet.Where(c => c.Movie.Id.Equals(ListMovie.Id)).ToList();
         }
 
+        /*
+         * Méthode pour supprimer un film
+         */ 
         private void ToMovieDeleteExecute(MovieNet.Movie ListMovie)
         {
             MovieDataModelContainer ctx = new MovieDataModelContainer();
@@ -784,6 +788,9 @@ namespace MovieNet.ViewModels
             }
         }
 
+        /*
+         * Méthode pour accéder à la page d'ajout d'un commentaire / note
+         */ 
         private void ToMovieCommentExecute(MovieNet.Movie ListMovie)
         {
             SubSwitchView = 5;
