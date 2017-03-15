@@ -23,6 +23,7 @@ namespace MovieNet.ViewModels
             ConnectStatusName = "";
             InscriptionStatusName = "";
             ProfilEditStatusName = "";
+            MovieEditStatusName = "";
             AddMovieStatusName = "";
 
             UserIdConnected = 0;
@@ -47,8 +48,11 @@ namespace MovieNet.ViewModels
             ToValidAddMovie = new RelayCommand(ToValidAddMovieExecute, ToValidAddMovieCanExecute);
             ToMovie = new RelayCommand(ToMovieExecute, ToMovieCanExecute);
             ToMovieDetail = new RelayCommand<MovieNet.Movie>((s) => ToMovieDetailExecute(s));
+            ToMovieEdit = new RelayCommand<MovieNet.Movie>((s) => ToMovieEditExecute(s));
             ToMovieDelete = new RelayCommand<MovieNet.Movie>((s) => ToMovieDeleteExecute(s));
             ToDisconnect = new RelayCommand(ToDisconnectExecute, ToDisconnectCanExecute);
+
+            MovieEdit = new RelayCommand(MovieEditExecute, MovieEditCanExecute);
         }
 
         private int _switchView;
@@ -58,6 +62,7 @@ namespace MovieNet.ViewModels
         private string _connectStatusName;
         private string _inscriptionStatusName;
         private string _profilEditStatusName;
+        private string _movieEditStatusName;
 
         private int _userIdConnected;
         private string _userNameConnected;
@@ -85,6 +90,14 @@ namespace MovieNet.ViewModels
         private string _movieDetailUser;
         private string _movieDetailType;
         private string _movieDetailNote;
+
+        private string _movieEditTitle;
+        private string _movieEditDescription;
+        private string _movieEditUser;
+        private int _movieEditIdMovie;
+        private string _movieEditNote;
+
+        private string _movieEditStatusColor;
 
         private string _deleteStatusName;
         
@@ -145,6 +158,15 @@ namespace MovieNet.ViewModels
             set
             {
                 _profilEditStatusName = value;
+                RaisePropertyChanged();
+            }
+        }
+        public string MovieEditStatusName
+        {
+            get { return _movieEditStatusName; }
+            set
+            {
+                _movieEditStatusName = value;
                 RaisePropertyChanged();
             }
         }
@@ -283,7 +305,55 @@ namespace MovieNet.ViewModels
             set { _movieDetailNote = value; }
         }
 
-    
+        public string MovieEditTitle
+        {
+            get { return _movieEditTitle; }
+            set { _movieEditTitle = value; }
+        }
+        public string MovieEditDescription
+        {
+            get { return _movieEditDescription; }
+            set { _movieEditDescription = value; }
+        }
+        public string MovieEditUser
+        {
+            get { return _movieEditUser; }
+            set
+            {
+                _movieEditUser = value;
+                RaisePropertyChanged();
+            }
+        }
+        public int MovieEditIdMovie
+        {
+            get { return _movieEditIdMovie; }
+            set
+            {
+                _movieEditIdMovie = value;
+                RaisePropertyChanged();
+            }
+        }
+        public string MovieEditNote
+        {
+            get { return _movieEditNote;}
+            set
+            {
+                _movieEditNote = value;
+                RaisePropertyChanged();
+            }
+        }
+        public string MovieEditStatusColor
+        {
+            get { return _movieEditStatusColor; }
+            set
+            {
+                _movieEditStatusColor = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
+
         public string DeleteStatusName
         {
             get { return _deleteStatusName; }
@@ -332,9 +402,10 @@ namespace MovieNet.ViewModels
         public RelayCommand ProfilEdit { get; }
         public RelayCommand MovieSearch { get; }
         public RelayCommand<MovieNet.Movie> ToMovieDetail { get; private set; }
+        public RelayCommand<MovieNet.Movie> ToMovieEdit { get; private set; }
         public RelayCommand<MovieNet.Movie> ToMovieDelete { get; private set; }
 
-
+        public RelayCommand MovieEdit { get; }
 
         /*
          * Méthode pour la connexion
@@ -626,6 +697,10 @@ namespace MovieNet.ViewModels
             return true;
         }
 
+
+        /**
+         * Methode pour Afficher le detail d'un film
+         */
         private void ToMovieDetailExecute(MovieNet.Movie ListMovie)
         {
             SubSwitchView = 3;
@@ -657,16 +732,95 @@ namespace MovieNet.ViewModels
             Comments = ctx.CommentSet.Where(c => c.Movie.Id.Equals(ListMovie.Id)).ToList();
         }
 
-        private void ToMovieDeleteExecute(MovieNet.Movie ListMovie)
+        /**
+         *  Methode pour editer un movie si user est le proprietaire
+         */
+        private void ToMovieEditExecute(MovieNet.Movie ListMovie)
         {
+            if (ListMovie.User.Id != UserIdConnected)
+            {
+                DeleteStatusName = "Vous n'avez le droit d'editer ce film";
+            }
+            else
+            {
+                MovieEditIdMovie = 0;
+
+                SubSwitchView = 4;
+
+                MovieDataModelContainer ctx = new MovieDataModelContainer();
+
+                Movie film = ctx.MovieSet.Find(ListMovie.Id);
+
+                MovieEditStatusName = "Edition du film : " + ListMovie.Title;
+
+                MovieEditUser = "Ajouter par : " + ListMovie.User.Login;
+
+                MovieEditNote = "La note pour ce film est de " + ListMovie.Note.Count.ToString();
+
+                MovieEditTitle = ListMovie.Title;
+                MovieEditDescription = ListMovie.Description;
+                MovieEditIdMovie = film.Id;
+
+            }
+
+        }
+
+        void MovieEditExecute()
+        {
+
             MovieDataModelContainer ctx = new MovieDataModelContainer();
 
+            var film = ctx.MovieSet.Single(x => x.Id == MovieEditIdMovie);
+            film.Title = MovieEditTitle;
+            film.Description = MovieEditDescription;
+            film.Type = ctx.TypeSet.Find(Type);
+            ctx.SaveChanges();
+
+            Movies = ctx.MovieSet.ToList();
+
+            StatusColor = "Green";
+            DeleteStatusName = "Votre Film a bien ete modifie";
+            SubSwitchView = 0;
+
+        }
+        bool MovieEditCanExecute()
+        {
+            if (String.IsNullOrEmpty(MovieEditTitle))
+            {
+                MovieEditStatusName = "Veuillez ajouter un titre";
+                MovieEditStatusColor = "Red";
+                return false;
+            }
+            else if (String.IsNullOrEmpty(MovieEditDescription))
+            {
+                MovieEditStatusName = "Veuillez ajouter une description";
+                MovieEditStatusColor = "Red";
+                return false;
+
+            }
+            else if (Type == default(int))
+            {
+                MovieEditStatusName = "Veuillez choisir une catégorie de film";
+                MovieEditStatusColor = "Red";
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+
+        private void ToMovieDeleteExecute(MovieNet.Movie ListMovie)
+        {
             if (ListMovie.User.Id != UserIdConnected)
             {
                 DeleteStatusName = "Vous n'avez le droit de supprimer ce film";
             }
             else
             {
+                MovieDataModelContainer ctx = new MovieDataModelContainer();
+
                 Movie film = ctx.MovieSet.Find(ListMovie.Id);
 
                 ctx.MovieSet.Remove(film);
