@@ -28,6 +28,10 @@
         <DataTemplate x:Key="ApplicationMovieDetailView" DataType="{x:Type viewmodels:MainViewModel}">
             <local:ApplicationMovieDetailView />
         </DataTemplate>
+
+        <DataTemplate x:Key="ApplicationMovieCommentView" DataType="{x:Type viewmodels:MainViewModel}">
+            <local:ApplicationMovieCommentView />
+        </DataTemplate>
     </UserControl.Resources>
 
     <Grid>
@@ -56,9 +60,6 @@
                         </DataTrigger>
                         <DataTrigger Binding="{Binding SubSwitchView}" Value="3">
                             <Setter Property="ContentTemplate" Value="{StaticResource ApplicationMovieDetailView}" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding SubSwitchView}" Value="4">
-                            <Setter Property="ContentTemplate" Value="{StaticResource ApplicationEditMovieView}" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

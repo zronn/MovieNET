@@ -19,7 +19,7 @@
         <TextBox x:Name="Description" Text="{Binding DescriptionAdd}" HorizontalAlignment="Left" Height="44" Margin="348,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="265"/>
 
         <Label Content="Genre" HorizontalAlignment="Left" Margin="244,262,0,0" VerticalAlignment="Top"/>
-        <ComboBox ItemsSource="{Binding Types}"  DisplayMemberPath="Value" SelectedValuePath="Id"  SelectedValue="{Binding Path=Type}"
+        <ComboBox ItemsSource="{Binding Types}"  DisplayMemberPath="Value" SelectedValuePath="Id" SelectedValue="{Binding Path=Type}"
                   HorizontalAlignment="Left" Margin="348,262,0,0" VerticalAlignment="Top" Width="80" Height="20"/>
 
 
