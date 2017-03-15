@@ -54,53 +54,64 @@ namespace MovieNet.ViewModels
             ToDisconnect = new RelayCommand(ToDisconnectExecute, ToDisconnectCanExecute);
         }
 
+        // Gestion des vues
         private int _switchView;
         private int _subSwitchView;
 
+        // Status (messages de succés / erreur)
         private string _statusColor;
         private string _connectStatusName;
         private string _inscriptionStatusName;
         private string _profilEditStatusName;
+        private string _movieCommentStatusName;
+        private string _addMovieStatusName;
+        private string _deleteStatusName;
 
+        // Données rattachées à l'user connecté
         private int _userIdConnected;
         private string _userNameConnected;
 
+        // Connection
         private string _loginIn;
         private string _passwordIn;
 
+        // Inscription
         private string _loginUp;
         private string _passwordUp;
 
+        // Edition du profil
         private string _loginEdit;
         private string _passwordEdit;
         private string _passwordEditConfirm;
 
+        // Ajout d'un commentaire / note
         private string _movieCommentMsg;
         private int _movieCommentNote;
-        private string _movieCommentStatusName;
         private int _movieDetailId;
 
+        // Ajout d'un film
         private string _titleAdd;
         private string _descriptionAdd;
         private int _type;
 
-        private string _addMovieStatusName;
-
+        // Recherche d'un film
         private string _movieTitleSearch;
 
+        // Détail d'un film
         private string _movieDetailTitle;
         private string _movieDetailDescription;
         private string _movieDetailUser;
         private string _movieDetailType;
         private string _movieDetailNote;
 
-        private string _deleteStatusName;
-        
-
+        // Listes pour Movie, Type et Comment
         private List<Movie> _movies;
         private List<Type> _types;
         private List<Comment> _comments;
 
+        /* --------------------------------------- */
+
+        // Gestion des vues
         public int SwitchView
         {
             get { return _switchView; }
@@ -120,6 +131,7 @@ namespace MovieNet.ViewModels
             }
         }
 
+        // Status (messages de succés / erreur)
         public string StatusColor
         {
             get { return _statusColor; }
@@ -156,21 +168,41 @@ namespace MovieNet.ViewModels
                 RaisePropertyChanged();
             }
         }
-        public int UserIdConnected
-        {
-            get { return _userIdConnected; }
-            set
-            {
-                _userIdConnected = value;
-                RaisePropertyChanged();
-            }
-        }
         public string AddMovieStatusName
         {
             get { return _addMovieStatusName; }
             set
             {
                 _addMovieStatusName = value;
+                RaisePropertyChanged();
+            }
+        }
+        public string MovieCommentStatusName
+        {
+            get { return _movieCommentStatusName; }
+            set
+            {
+                _movieCommentStatusName = value;
+                RaisePropertyChanged();
+            }
+        }
+        public string DeleteStatusName
+        {
+            get { return _deleteStatusName; }
+            set
+            {
+                _deleteStatusName = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        // Données rattachées à l'user connecté
+        public int UserIdConnected
+        {
+            get { return _userIdConnected; }
+            set
+            {
+                _userIdConnected = value;
                 RaisePropertyChanged();
             }
         }
@@ -184,29 +216,9 @@ namespace MovieNet.ViewModels
             }
         }
 
-        public string TitleAdd
-        {
-            get { return _titleAdd; }
-            set { _titleAdd = value; }
-        }
-
-        public string DescriptionAdd
-        {
-            get { return _descriptionAdd; }
-            set { _descriptionAdd = value; }
-        }
-
-        public int Type
-        {
-            get { return _type; }
-            set
-            {
-                _type = value;
-                RaisePropertyChanged();
-            }
-        }
 
 
+        // Connection
         public string LoginIn
         {
             get { return _loginIn; }
@@ -218,6 +230,7 @@ namespace MovieNet.ViewModels
             set { _passwordIn = value; }
         }
 
+        // Inscription
         public string LoginUp
         {
             get { return _loginUp; }
@@ -229,6 +242,7 @@ namespace MovieNet.ViewModels
             set { _passwordUp = value; }
         }
 
+        // Edition du profil
         public string LoginEdit
         {
             get { return _loginEdit; }
@@ -245,6 +259,7 @@ namespace MovieNet.ViewModels
             set { _passwordEditConfirm = value; }
         }
 
+        // Ajout de commentaires / notes
         public string MovieCommentMsg
         {
             get { return _movieCommentMsg; }
@@ -256,28 +271,28 @@ namespace MovieNet.ViewModels
             set { _movieCommentNote = value; }
         }
 
-        public string MovieCommentStatusName
+        // Ajout d'un film
+        public string TitleAdd
         {
-            get { return _movieCommentStatusName; }
+            get { return _titleAdd; }
+            set { _titleAdd = value; }
+        }
+        public string DescriptionAdd
+        {
+            get { return _descriptionAdd; }
+            set { _descriptionAdd = value; }
+        }
+        public int Type
+        {
+            get { return _type; }
             set
             {
-                _movieCommentStatusName = value;
+                _type = value;
                 RaisePropertyChanged();
             }
         }
 
-        public int MovieDetailId
-        {
-            get { return _movieDetailId; }
-            set
-            {
-                _movieDetailId = value;
-                RaisePropertyChanged();
-            }
-        }
-
-
-
+        // Recherche d'un film
         public string MovieTitleSearch
         {
             get { return _movieTitleSearch; }
@@ -288,6 +303,16 @@ namespace MovieNet.ViewModels
             }
         }
 
+        // Détail d'un film
+        public int MovieDetailId
+        {
+            get { return _movieDetailId; }
+            set
+            {
+                _movieDetailId = value;
+                RaisePropertyChanged();
+            }
+        }
         public string MovieDetailTitle
         {
             get { return _movieDetailTitle; }
@@ -306,37 +331,23 @@ namespace MovieNet.ViewModels
                 RaisePropertyChanged();
             }
         }
-
         public string MovieDetailUser
         {
             get { return _movieDetailUser; }
             set { _movieDetailUser = value; }
         }
-
         public string MovieDetailType
         {
             get { return _movieDetailType; }
             set { _movieDetailType = value; }
         }
-
         public string MovieDetailNote
         {
             get { return _movieDetailNote; }
             set { _movieDetailNote = value; }
         }
 
-    
-        public string DeleteStatusName
-        {
-            get { return _deleteStatusName; }
-            set
-            {
-                _deleteStatusName = value; 
-                RaisePropertyChanged();
-            }
-        }
-
-
+        // Listes pour Movie, Type et Comment
         public List<Movie> Movies
         {
             get { return _movies; }
@@ -355,7 +366,6 @@ namespace MovieNet.ViewModels
                 RaisePropertyChanged();
             }
         }
-
         public List<Comment> Comments
         {
             get { return _comments; }
@@ -377,7 +387,6 @@ namespace MovieNet.ViewModels
         public RelayCommand<MovieNet.Movie> ToMovieDetail { get; private set; }
         public RelayCommand<MovieNet.Movie> ToMovieDelete { get; private set; }
         public RelayCommand<MovieNet.Movie> ToMovieComment { get; private set; }
-
 
         /*
          * Méthode pour la connexion
